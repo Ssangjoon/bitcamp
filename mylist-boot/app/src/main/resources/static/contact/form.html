@@ -23,7 +23,14 @@
 
    document.querySelector("#x-add-btn").onclick = function(){
      fetch(`/contact/add?name=${xName.value}&email=${xEmail.value}&tel=${xTel.value}&company=${xCompany.value}`)
-     .then(function(response){
+     .then(function(response){ //서버에서 응답이오면 그 응답정보의 값이 파라미터인 함수를 실행하라.
+       //return response.json() -> json형식으로 되어있을 인자값의 응답 데이터를 파싱하여 리턴
+       /* var result = response.text(); 동기 - 편의점 주문
+       response.text().then(function(result) {}); 비동기 - 과장의 업무 할당
+       기다려서 될 일과 그렇지 않은 일의 차이로
+       pc와 pc에 내장된 app 둘이서만 주고 받았으나
+       근래 프로그램밍은 app이 서버컴퓨터와 연결되어 작업을 리턴받기에 시간이 소요되며, 언제 끝날지 예측 불가하다.
+       */
 
        return response.text(); //서버에서 보낸 데이터를 그냥 그대로 텍스트로 리턴! JSON문자열로 처리 하지말고,
        // var result = response.text(); //기다린다
