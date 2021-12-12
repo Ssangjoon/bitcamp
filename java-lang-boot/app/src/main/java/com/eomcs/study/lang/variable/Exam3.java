@@ -1,4 +1,4 @@
-// 변수 : 스프링 부트의 자동 형변환
+// 변수 : 스프링 부트의 자동 형변환.
 package com.eomcs.study.lang.variable;
 
 import org.springframework.web.bind.annotation.GetMapping;
