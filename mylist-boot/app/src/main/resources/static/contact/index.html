@@ -21,31 +21,31 @@
     </table>
    <script type="text/javascript">
      var tbody = document.querySelector("#x-contact-tbl tbody")
-    /* fetch("/contact/list").then(function(response){
-       return response.json();
+     fetch("/contact/list").then(function(response){
+       return response.json(); //js가 읽을수있는 문자열로 변환?
      }).then(function(arr){
 
        for(var str of arr){
          console.log(str);
-         var contact = str.split(",") //배열로 만드는 거?
+         var contact = str.split(",") //문자열을 ,로 쪼개서 배열로 만든다.
          var tr = document.createElement("tr")
          tr.innerHTML = `<td>${contact[0]}</td><td>${contact[1]}</td><td>${contact[2]}</td><td>${contact[3]}</td>`
-         tbody.appendChild(tr);
+         tbody.appendChild(tr); // `` 문자열 과 변수 를 함께 사용할 떄 , 문자열이 아닌 템플릿으로 사용된다?
        }
 
-     });*/
+     });
 
-      var contacts = [
+      /*var contacts = [
       "홍길동, hong@test.com, 010-1111-2222, 비트캠프",
       "홍길동2, hong@test.com, 010-1111-2222, 비트캠프",
       "홍길동3, hong@test.com, 010-1111-2222, 비트캠프"
       ]
-     for(var contact of contacts){
-
+    console.log(contacts[0])*/
+     /* for(var contact of contacts){
        /*var str = contact.split(",");
        console.log(str[0])*/
-       console.log(contact[3])
-     }
+    //   console.log(contact[3])
+     //}
 
 
    </script>
