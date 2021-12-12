@@ -21,7 +21,7 @@
     </table>
    <script type="text/javascript">
      var tbody = document.querySelector("#x-contact-tbl tbody")
-     fetch("/contact/list").then(function(response){
+    /* fetch("/contact/list").then(function(response){
        return response.json();
      }).then(function(arr){
 
@@ -33,13 +33,19 @@
          tbody.appendChild(tr);
        }
 
-     });
+     });*/
 
-     // var contacts = [
-     // "홍길동, hong@test.com, 010-1111-2222, 비트캠프",
-     // "홍길동2, hong@test.com, 010-1111-2222, 비트캠프",
-     // "홍길동3, hong@test.com, 010-1111-2222, 비트캠프"
-     // ]
+      var contacts = [
+      "홍길동, hong@test.com, 010-1111-2222, 비트캠프",
+      "홍길동2, hong@test.com, 010-1111-2222, 비트캠프",
+      "홍길동3, hong@test.com, 010-1111-2222, 비트캠프"
+      ]
+     for(var contact of contacts){
+
+       /*var str = contact.split(",");
+       console.log(str[0])*/
+       console.log(contact[3])
+     }
 
 
    </script>
