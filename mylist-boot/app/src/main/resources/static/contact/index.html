@@ -29,7 +29,10 @@
          console.log(str);
          var contact = str.split(",") //문자열을 ,로 쪼개서 배열로 만든다.
          var tr = document.createElement("tr")
-         tr.innerHTML = `<td>${contact[0]}</td><td>${contact[1]}</td><td>${contact[2]}</td><td>${contact[3]}</td>`
+         tr.innerHTML = `<td><a href="view.html?email=${contact[1]}">${contact[0]}</a></td>
+         <td>${contact[1]}</td>
+         <td>${contact[2]}</td>
+         <td>${contact[3]}</td>`
          tbody.appendChild(tr); // `` 문자열 과 변수 를 함께 사용할 떄 , 문자열이 아닌 템플릿으로 사용된다?
        }
 

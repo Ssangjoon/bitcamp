@@ -11,7 +11,7 @@
     이메일:<input id="x-email"type="email"><br>
     전화:<input id="x-tel"type="tel"><br>
     회사:<input id="x-company"type="text"><br>
-    <button id="x-add-btn" type=" button">추가</button>
+    <button id="x-update-btn" type=" button">변경</button>
     <button id ="x-cancle-btn" type="button">취소</button>
   </form>
 
@@ -20,8 +20,10 @@
    var xEmail = document.querySelector("#x-email")
    var xTel = document.querySelector("#x-tel")
    var xCompany = document.querySelector("#x-company")
+   //쿼리스트링에서 이메일 값을 추출한다.
+   console.log(location.href.indexof('?'));
 
-   document.querySelector("#x-add-btn").onclick = function(){
+   document.querySelector("#x-update-btn").onclick = function(){
      fetch(`/contact/add?name=${xName.value}&email=${xEmail.value}&tel=${xTel.value}&company=${xCompany.value}`)
      .then(function(response){ //서버에서 응답이오면 그 응답정보의 값이 파라미터인 함수를 실행하라.
 
