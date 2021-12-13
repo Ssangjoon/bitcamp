@@ -1,51 +1,29 @@
 package com.eomcs.mylist;
 
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController //클라이언트 요청을 처리하는 역할
+@RestController 
+// 이 클래스가 클라이언트 요청을 처리한다는 것을 표시한다.
+// 이 표시(애노테이션)가 붙어 있어야만 스프링부트가 인식한다. 
 public class ContactController {
-  //인스턴스 변수 
-  // => 모든 인스턴스 메서드가 공유한다. 
-  String[] contacts = new String[5]; 
-  int size=0;
-  @GetMapping("/contact/list")
+
+  @RequestMapping("/contact/list")
   public Object list() {
-    //    String[] contacts = {
-    //        "홍길동, hong@test.com, 010-1111-2222, 비트캠프",
-    //        "홍길동2, hong@test.com, 010-1111-2222, 비트캠프",
-    //        "홍길동3, hong@test.com, 010-1111-2222, 비트캠프"
-    //    };
-    String[] records = new String[size];
-    for(int i=0; i<size;i++) { 
-      records[i]=contacts[i];
-    }
-    return records;
+    String[] contacts = {
+        "aaa1,aaa@test.com,111,비트캠프",
+        "aaa2,aaa@test.com,111,비트캠프",
+        "aaa3,aaa@test.com,111,비트캠프",
+        "aaa4,aaa@test.com,111,비트캠프",
+        "aaa5,aaa@test.com,111,비트캠프"
+    };
+    return contacts;
   }
-
-  @GetMapping("/contact/add")
+  @RequestMapping("/contact/add")
   public Object add(String name, String email, String tel, String company) {
-
-    contacts[size++] = name + "," + email + "," + tel + "," + company;
-    /* 
-     후위 연산자!
-    int temp = size;
-    size = size +1;
-    contacts[temp] = name + "," + email + "," + tel + "," + company;
-    ...현재 현재의 값을 두고 따로 1증가 시켜라
-     */
-
-    return size;
+    String contact = name + "," + email + "," + tel + "," + company;
+    return contact;
   }
-
-  @GetMapping("/contact/get")
-  public Object get(String email) {
-    for (String contact : contacts) {
-      if (email.equals(contact.split(",")[1])) {
-        return contact;
-      }
-    }
-    return "";
-  }
-
 }
+
+
