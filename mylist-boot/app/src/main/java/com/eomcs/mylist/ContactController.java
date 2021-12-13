@@ -27,6 +27,50 @@ public class ContactController {
     return size;
   }
 
+
+  @RequestMapping("/contact/get")
+  public Object get(String email) {
+    for (int i = 0; i < size; i++) {
+      /* 학습용
+          String contact = contacts[i];
+          String[] values = contact.split(",");
+          if (values[1]equals(email){
+          return contacts[i]
+      };     */
+
+      //실전
+      if (contacts[i].split(",")[1].equals(email)) { //"u1,u1@test.com,1111,비트캠프"
+        return contacts[i];
+      }
+    }
+    return "";
+  }
+  @RequestMapping("/contact/update")
+  public Object update(String name, String email, String tel, String company) {
+    String contact = name + "," + email + "," + tel + "," + company;
+    for (int i = 0; i < size; i++) {
+      if (contacts[i].split(",")[1].equals(email)) { 
+        contacts[i] = contact;
+        return 1;
+      }
+    }
+    return 0;
+  }
+  @RequestMapping("/contact/delete")
+  public Object delete(String email) {
+    for (int i = 0; i < size; i++) {
+      if (contacts[i].split(",")[1].equals(email)) { 
+
+        // 현재 위치의 다음 항목에서 배열 끝까지 반복 하며 앞으로 값을 당겨온다. 
+        for (int j = i + 1; j < size; j++) {
+          contacts[j - 1] = contacts[j];
+        }
+        size--;
+        return 1;
+      }
+    }
+    return 0;
+  }
 }
 
 
