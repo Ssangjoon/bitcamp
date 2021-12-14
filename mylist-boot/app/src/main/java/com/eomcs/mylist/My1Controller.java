@@ -19,7 +19,7 @@ public class My1Controller {
 
   @RequestMapping("/my1/add")
   public Object add(String name, String tel, String distance, String menu, String price, String kg, String star) {
-    String lunch = name + "," + tel + "," + distance + "," + menu + "," +price + "," + kg + "," + star;
+    String lunch = name + "," + tel + "," + menu + "," +price + "," + distance + "," + kg + "," + star;
     lunches[size++] = lunch;
     return size;
   }
@@ -34,7 +34,7 @@ public class My1Controller {
   }
   @RequestMapping("/my1/update")
   public Object update(String name, String tel, String distance, String menu, String price, String kg, String star) {
-    String lunch = name + "," + tel + "," + distance + "," + menu + "," +price + "," + kg + "," + star;
+    String lunch = name + "," + tel + "," + menu + "," +price + ","+ distance + ","  + kg + "," + star;
     for (int i = 0; i < size; i++) {
       if (lunches[i].split(",")[1].equals(tel)) { 
         lunches[i] = lunch;

@@ -16,6 +16,7 @@ public class Ex00Controller {
   public Object exam07() {
     return "console.log('nono')"; // 자바스크립트 코드 조각을 리턴한다. 
   }
+
   @RequestMapping("/javascript/ex01/exam05_x")
   public Object exam05_x() throws Exception{
     Thread.sleep(10000);
