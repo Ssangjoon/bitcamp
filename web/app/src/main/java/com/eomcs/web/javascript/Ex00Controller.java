@@ -6,18 +6,19 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class Ex00Controller {
 
-  @RequestMapping("/javascript/ex00/exam06")
-  public Object exam06() {
-    return "<ul><li>홍길동</li><li>임꺽정</li><li>유관순</li></ul>";
-    // UI조각을 만들어 던진다. server rendering?
+  @RequestMapping("/javascript/ex01/exam05_1")
+  public Object exam06() throws Exception{
+    Thread.sleep(10000); // 10초 동안 기다렸다가 작업을 재개한다. ==> 2초 이상 지연되면,,, 망한다. 
+    return "console.log('okok')"; // 자바스크립트 코드 조각을 리턴한다. 
   }
 
-  @RequestMapping("/javascript/ex00/exam07")
+  @RequestMapping("/javascript/ex01/exam05_2")
   public Object exam07() {
-    String[] names = {"홍길동", "임꺽정", "유관순"};
-    return names;// 클라이언트에 보내는 것은 UI가 아니라 데이터이다. 
-    /* ==> 안드로이드,아이폰,,,,, 기타등등 기기가 많이 생겨나면서 데이터만 보내주고 
-    알아서 처리하길,,,,, 즉 더 많은 기기에서 데이터를 활용하고 UI는 받는 쪽에서 알아서 하는 방향으로 
-     */
+    return "console.log('nono')"; // 자바스크립트 코드 조각을 리턴한다. 
+  }
+  @RequestMapping("/javascript/ex01/exam05_x")
+  public Object exam05_x() throws Exception{
+    Thread.sleep(10000);
+    return "50,000"; // 데이터를 리턴한다.. 
   }
 }
