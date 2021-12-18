@@ -10,20 +10,31 @@ public class My1Controller {
   String[] contacts = new String[4];
   int size = 0;
 
-  @RequestMapping("my1/list")
+  @RequestMapping("/my1/list")
   public Object list() {
     String[] arr = new String[size];
     for (int i=0; i < size; i++) {
       arr[i] = contacts[i];
     }
     return arr;
-  }//form 의 인풋 값이 먼저 add로 전달이 되고 사이즈가 1증가된 상태?
-  //size 말고 contacts.length로 바뀌는게 안낫나?
+  }
 
-  @RequestMapping("my1/add")
+  @RequestMapping("/my1/add")
   public Object add(String date, String subject, String underStanding, String face) {
     contacts[size ++] = date + "," + subject + "," + underStanding + "," + face;
     return size; 
+  }
+
+  @RequestMapping("/my1/get")
+  public Object get(String subject) {
+    //    for (String contact : contacts) {
+    //      if (date.equals(contact.split(",")[0])) {
+    for (int i=0; i<size; i++) {
+      if(contacts[i].split(",")[1].equals(subject)) {
+        return contacts[i];
+      }
+    }
+    return "";
   }
 
 

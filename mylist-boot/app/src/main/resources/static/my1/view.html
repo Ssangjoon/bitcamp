@@ -5,7 +5,7 @@
   <title>연봉을 높이자</title>
 </head>
 <body>
-  <h1>오늘의 배움</h1>
+  <h1>수정수정수정</h1>
 <form >
 날짜*:<input id="x-date"type="date" ><br>
 수업주제*:<input id="x-subject"type="text" ><br>
@@ -26,10 +26,50 @@
 </form>
 </body>
 <script type="text/javascript">
+// 1) URL에서 쿼리스트링(query string)을 추출한다.
+// 예)http://localhost:8080/my1/view.html?date=2021-12-08
+  var arr = location.href.split("?");
+  console.log(arr); // ['http://localhost:8080/my1/view.html', 'subject=메서드']
+
+  if (arr.length == 1){
+    alert("요청 형식이 바르지 않습니다. ")
+    throw "URL 형식 오류!"
+  }
+  var qs = arr[1];
+  console.log(qs); //subject=메서
+  // 2) 퀴리스트링에서 email값 추출
+  var subject = null;
+  var values = qs.split("&")
+  for (var value of values){ // &은 없는데 왜 values 대신 qs를 쓰면 오류가 나올까?
+    if (value.startsWith("subject=")){
+     subject = value.split("=")[1];
+      break;
+    }
+  }
+
+  if (subject == null) {
+    alert("날짜 값이 없습니다. ");
+    throw "파라미터 오류!"
+  }
+  console.log(typeof subject); //메서드
+
   var date = document.querySelector("#x-date")
   var subject = document.querySelector("#x-subject")
   var underStanding = document.querySelector("#x-underStanding")
   var face = document.querySelector("#x-face")
+
+  // 3) 연락처 상세 정보를 화면에 출력한다.
+  fetch(`/my1/get?subject=${subject}`)
+    .then(function(response) {
+      return response.text();
+    })
+    .then(function(contact) {
+      console.log(contact);
+
+
+    })
+
+
 
   document.querySelector("#x-add-btn").onclick = function() {
 
