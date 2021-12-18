@@ -26,15 +26,26 @@ public class My1Controller {
   }
 
   @RequestMapping("/my1/get")
-  public Object get(String subject) {
+  public Object get(String date) {
     //    for (String contact : contacts) {
     //      if (date.equals(contact.split(",")[0])) {
     for (int i=0; i<size; i++) {
-      if(contacts[i].split(",")[1].equals(subject)) {
+      if(contacts[i].split(",")[0].equals(date)) {
         return contacts[i];
       }
     }
     return "";
+  }
+  @RequestMapping("/my1/update")
+  public Object update(String date, String subject, String underStanding, String face) {
+    String contact = date + "," + subject + "," + underStanding + "," + face;
+    for (int i = 0; i < size; i++) {
+      if (contacts[i].split(",")[1].equals(date)) { 
+        contacts[i] = contact;
+        return 1;
+      }
+    }
+    return 0;
   }
 
 
