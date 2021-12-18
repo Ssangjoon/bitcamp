@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>연봉을 높이자</title>
+</head>
+<body>
+  <h1>오늘의 배움</h1>
+<form >
+날짜*:<input id="x-date"type="date" ><br>
+수업주제*:<input id="x-subject"type="text" ><br>
+이해도:<select id="x-underStanding">
+  <option value="">선택</option>
+  <option value="상">상</option>
+  <option value="중">중</option>
+  <option value="하">하</option>
+</select><br>
+대면/비대면: <select id="x-face">
+  <option value="">선택</option>
+  <option value="대면">대면</option>
+  <option value="비대면">비대면</option>
+</select><br>
+별표(*)는 반드시 입력 하셔야 합니다.<br>
+<button id="x-add-btn"type="button" >등록</button>
+<button id="x-cancel-btn"type="button" >취소</button>
+</form>
+</body>
+<script type="text/javascript">
+  var date = document.querySelector("#x-date")
+  var subject = document.querySelector("#x-subject")
+  var underStanding = document.querySelector("#x-underStanding")
+  var face = document.querySelector("#x-face")
+
+  document.querySelector("#x-add-btn").onclick = function() {
+
+    if (date.value == "" || subject.value == ""){
+      window.alert("필수 입력 항목을 입력하세요");
+      return;
+    }
+
+    fetch(`/my1/add?date=${date.value}&subject=${subject.value}&underStanding=${underStanding.value}&face=${face.value}`)
+    .then(function(response) {
+      return response.text()
+    })
+    .then(function(text) {
+      console.log(text);
+      location.href = "index.html"
+    })
+  };
+ document.querySelector("#x-cancel-btn").onclick = function() {
+ window.location.href = "index.html"
+ }
+</script>
+
+</html>

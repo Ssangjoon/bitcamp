@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="utf-8">
+  <title>연봉을 높이자</title>
+</head>
+<body>
+<h1>연봉을 높이자</h1>
+<a href="form.html">오늘의 배움</a>
+<table id="x-content-table" border="1">
+  <thead>
+    <th>날짜</th>
+    <th>수업주제</th>
+    <th>이해도</th>
+    <th>대면/비대면</th>
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+<script type="text/javascript">
+
+
+  var tbody = document.querySelector("#x-content-table tbody")
+
+  fetch("/my1/list")
+   .then(function(response) {
+     return response.json();
+   })
+   .then(function(contacts) {
+     console.log(contacts);
+     for (var contact of contacts) {
+       //console.log(contact);
+       var values = contact.split(","); /*contact = ["2021,메서드,상,대면",]
+       문자열인 contact를 , 단위로 쪼개어 (split) values 에 배열로 담다
+       -> values = [2021, 메서드, 상, 대면]*/
+       //console.log(values[0], values[1], values[2], values[3]);
+       var tr = document.createElement("tr");
+       tr.innerHTML = `<td><a href="view.html?date=${values[0]}">${values[0]}</a></td>
+       <td>${values[1]}</td>
+       <td>${values[2]}</td>
+       <td>${values[3]}</td>`
+       tbody.appendChild(tr);
+     }
+   })
+
+
+
+
+</script>
+</body>
+</html>
