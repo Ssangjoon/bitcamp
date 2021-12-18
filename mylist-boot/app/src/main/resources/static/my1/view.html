@@ -22,6 +22,7 @@
 </select><br>
 별표(*)는 반드시 입력 하셔야 합니다.<br>
 <button id="x-update-btn"type="button" >변경</button>
+<button id="x-delete-btn"type="button" >삭제</button>
 <button id="x-cancel-btn"type="button" >취소</button>
 </form>
 </body>
@@ -69,7 +70,7 @@ var date = params.get("date");
       return response.text();
     })
     .then(function(contact) {
-      //console.log(contact);
+      console.log(contact); //2021-12-02,ㅇㅇㅇ,상,대면
       var values = contact.split(",");
       // 4) 연락처 상세 정보를 화면에 출력한다.
       xDate.value = values[0];
@@ -96,6 +97,17 @@ var date = params.get("date");
       location.href = "index.html"
     })
   };
+  document.querySelector("#x-delete-btn").onclick = function() {
+    fetch(`/contact/delete?date=${date}`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(result) {
+        console.log(result);
+        location.href = "index.html";
+      });
+
+  }
  document.querySelector("#x-cancel-btn").onclick = function() {
  window.location.href = "index.html"
  }

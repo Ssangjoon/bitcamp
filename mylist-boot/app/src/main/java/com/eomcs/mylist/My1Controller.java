@@ -40,8 +40,24 @@ public class My1Controller {
   public Object update(String date, String subject, String underStanding, String face) {
     String contact = date + "," + subject + "," + underStanding + "," + face;
     for (int i = 0; i < size; i++) {
-      if (contacts[i].split(",")[1].equals(date)) { 
+      if (contacts[i].split(",")[0].equals(date)) { 
         contacts[i] = contact;
+        return 1;
+      }
+    }
+    return 0;
+  }
+
+  @RequestMapping("/my1/delete")
+  public Object delete(String date) {
+    for (int i = 0; i < size; i++) {
+      if (contacts[i].split(",")[0].equals(date)) { 
+
+        // 현재 위치의 다음 항목에서 배열 끝까지 반복 하며 앞으로 값을 당겨온다. 
+        for (int j = i + 1; j < size; j++) {
+          contacts[j - 1] = contacts[j];
+        }
+        size--;
         return 1;
       }
     }
