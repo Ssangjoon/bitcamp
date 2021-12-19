@@ -32,5 +32,5 @@ public class Exam0221 {
         System.out.println("올바른 번호를 입력하세요!");
     }
     keyScan.close();
-  }
+  }//단순값 비교에 스위치문이 else if보다 낫다
 }

@@ -24,9 +24,9 @@ public class Exam0620 {
 
     System.out.println(i--); // 5
     // 위의 문장을 컴파일 하면 다음과 같이 바뀐다.
-    //    int temp = i;
-    //    i = i - 1;
-    //    System.out.println(temp);
+        int temp = i;
+        i = i - 1;
+        System.out.println(temp);
 
     System.out.println(i); // 4
 
