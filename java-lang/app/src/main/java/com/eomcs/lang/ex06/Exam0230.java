@@ -4,7 +4,6 @@ package com.eomcs.lang.ex06;
 //
 public class Exam0230 {
   public static void main(String[] args) {
-    System.out.println('A');
     // switch (값) {}
     // 값으로 가능한 데이터 타입은?
     // => int 정수(byte,short,int,char), 문자열, 특별한 상수 Enum 타입
