@@ -20,13 +20,13 @@ public class ContactController {
 
   @RequestMapping("/contact/add")
   public Object add(Contact contact) {
-    System.out.println(contact.toString());
-    /*
+    System.out.println(contact);
+
     if (size == contacts.length) { // 배열이 꽉찼다면,
       contacts = grow(); // 메서드 이름에서 해당 코드에 대한 설명을 짐작할 수 있다.
     }
-    contacts[size++] = createCSV(name, email, tel, company);
-     */
+    contacts[size++] = contact;
+
     return size;
   }
   /*
@@ -93,13 +93,14 @@ public class ContactController {
     size--;
     return old;
   }
+   */
 
   // 기능:
   // - 배열의 크기를 늘린다.
   // - 기존 배열의 값을 복사해온다.
   //
-  String[] grow() {
-    String[] arr = new String[newLength()];
+  Contact[] grow() {
+    Contact[] arr = new Contact[newLength()];
     copy(contacts, arr);
     return arr;
   }
@@ -114,7 +115,7 @@ public class ContactController {
   // 기능: 
   // - 배열을 복사한다.
   // 
-  void copy(String[] source, String[] target) {
+  void copy(Contact[] source, Contact[] target) {
     // 개발자가 잘못 사용할 것을 대비해서 다음 코드를 추가한다.
     // 즉 target 배열이 source 배열 보다 작을 경우 target 배열 크기만큼만 복사한다.
     int length = source.length;
@@ -124,7 +125,7 @@ public class ContactController {
     for (int i = 0; i < length; i++) {
       target[i] = source[i];
     }
-  }*/
+  }
 }
 
 
