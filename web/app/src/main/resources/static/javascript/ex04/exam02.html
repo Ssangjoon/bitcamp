@@ -42,6 +42,7 @@ function f1(a, b) {
 }
 obj.plus1 = f1; // 함수명은 그 자체가 함수 객체의 주소를 갖고 있는 변수이다. 
 
+
 obj.plus2 = function(a, b) {
   return a + b;
 };
@@ -63,6 +64,7 @@ console.log(obj.viewCount);
 console.log(obj.plus1(100, 200)); // 리턴 값 출력
 console.log(obj["plus2"](100, 200)); // 리턴 값 출력
 obj['plus3'](100, 200);
+//// 저장방식과 사용 방식이 달라도 작동 한다. !
 
 </script>
 </body>
