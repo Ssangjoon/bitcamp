@@ -27,19 +27,22 @@ console.log(document.constructor.name);
 //=> HTMLDocumnet 생성자가 추가한 함수나 변수이다.
 //=> HTMLDocumnet 생성자의 문서를 보라!
 // => 상속관계
-//   Document() --> Node() --> EventTarget() --> Object()
+//   Document() --> Node() --> EventTarget() --> Object
 
-// Object() 생성자가 추가한 함수 존재여부 확인
-console.log(document.toString);
+console.log(document);
 
-//EventTarget() 생성자가 추가한 함수 존재 여부 확인
-console.log(document.addEventListener);
+console.log(Document.prototype);
+//Document()의 함수
+console.log(document.createElement); // document ---> Document.prototype //소문자는 변수 대문자는 함수
+//Node()의 함수
+console.log(document.appendChild); // document ---> Document.prototype ---> Node.prototype
 
-//Node() 생성자가 추가한 함수 존재 여부 확인
-console.log(document.appendChild);
+//EventTarget()의 함수
+console.log(document.addEventListener); // document ---> Document.prototype ---> Node.prototype ---> EventTarget.prototype
 
-//Document() 생성자가 추가한 함수 존재 여부 확인
-console.log(document.createElement);
+// Object()의 함수
+console.log(document.toString); // document ---> Document.prototype ---> Node.prototype ---> EventTarget.prototype ---> Object.prototype
+
 </script>
 </body>
 </html>

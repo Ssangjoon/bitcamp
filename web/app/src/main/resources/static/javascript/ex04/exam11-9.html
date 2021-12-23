@@ -32,6 +32,7 @@ var obj1 = new f1();
 var obj2 = new f2();
 var obj3 = new f3();
 
+// instancof 를 사용하면 그 객체를 초기화 시킨 생성자를 확인할 수 있다.
 console.log(obj0 instanceof Object);
 console.log(obj0 instanceof f1);
 console.log(obj0 instanceof f2);
@@ -55,6 +56,8 @@ console.log(obj3 instanceof f1);
 console.log(obj3 instanceof f2);
 console.log(obj3 instanceof f3);
 console.log("-----------------------");
+
+console.log(Object instanceof document);
 </script>
 </body>
 </html>
