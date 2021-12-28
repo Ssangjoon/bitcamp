@@ -28,5 +28,6 @@ public class Exam0610 {
 
     System.out.println(i); // 5
 
+
   }
 }

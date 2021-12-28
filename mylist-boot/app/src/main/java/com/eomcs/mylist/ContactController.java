@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController 
 public class ContactController {
 
-  String[] contacts = new String[5];
+  Contact[] contacts = new Contact[5];
   int size = 0;
 
   @RequestMapping("/contact/list")
@@ -19,17 +19,14 @@ public class ContactController {
   }
 
   @RequestMapping("/contact/add")
-  public Object add(Contact contact) {
-    System.out.println(contact);
-
+  public Object add(String name, String email, String tel, String company) {
     if (size == contacts.length) { // 배열이 꽉찼다면,
       contacts = grow(); // 메서드 이름에서 해당 코드에 대한 설명을 짐작할 수 있다.
     }
-    contacts[size++] = contact;
-
+    contacts[size++] = createCSV(name, email, tel, company);
     return size;
   }
-  /*
+
   @RequestMapping("/contact/get")
   public Object get(String email) {
     int index = indexOf(email);
@@ -93,14 +90,13 @@ public class ContactController {
     size--;
     return old;
   }
-   */
 
   // 기능:
   // - 배열의 크기를 늘린다.
   // - 기존 배열의 값을 복사해온다.
   //
-  Contact[] grow() {
-    Contact[] arr = new Contact[newLength()];
+  String[] grow() {
+    String[] arr = new String[newLength()];
     copy(contacts, arr);
     return arr;
   }
@@ -115,7 +111,7 @@ public class ContactController {
   // 기능: 
   // - 배열을 복사한다.
   // 
-  void copy(Contact[] source, Contact[] target) {
+  void copy(String[] source, String[] target) {
     // 개발자가 잘못 사용할 것을 대비해서 다음 코드를 추가한다.
     // 즉 target 배열이 source 배열 보다 작을 경우 target 배열 크기만큼만 복사한다.
     int length = source.length;
