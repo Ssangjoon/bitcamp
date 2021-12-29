@@ -12,7 +12,7 @@
 제목*: <input id="x-title" type="text"><br>
 내용*: <textarea id="x-content" cols="60" rows="10"></textarea><br>
 조회수: <span id="x-viewCount"></span><br>
-등록일: <span id="x-createDate"></span><br>
+등록일: <span id="x-createdDate"></span><br>
 별표(*) 항목은 필수 입력입니다.<br>
 <button id="x-update-btn" type="button">변경</button>
 <button id="x-delete-btn" type="button">삭제</button>
@@ -33,9 +33,9 @@
   var qs = arr[1];
   console.log(qs);
 
-  // 2) 쿼리 스트링에서 index 값을 추출한다.
+  // 2) 쿼리 스트링에서 email 값을 추출한다.
   var params = new URLSearchParams(qs);
-  var content = params.get("index");
+  var index = params.get("index");
 
   if (index == null) {
     alert("게시물 번호가 없습니다.");
@@ -44,12 +44,12 @@
   console.log(index);
 
   var xTitle = document.querySelector("#x-title");
-  var xContent = document.querySelector("#x-index");
+  var xContent = document.querySelector("#x-content");
   var xViewCount = document.querySelector("#x-viewCount");
-  var xCreateDate = document.querySelector("#x-createDate");
+  var xCreatedDate = document.querySelector("#x-createdDate");
 
   // 3) 서버에서 데이터 가져오기
-  fetch(`/board/get?content=${index}`)
+  fetch(`/board/get?index=${index}`)
     .then(function(response) {
       return response.json();
     })
@@ -58,7 +58,7 @@
       xTitle.value = board.title;
       xContent.value = board.content;
       xViewCount.innerHTML = board.viewCount;
-      xCompany.innerHTML = board.createDate;
+      xCreatedDate.innerHTML = board.createdDate;
     });
 
   document.querySelector("#x-update-btn").onclick = function() {
@@ -67,7 +67,7 @@
       return;
     }
 
-    fetch(`/board/update?index=${index}$title=${xTitle.value}&content=${xContent.value}`)
+    fetch(`/board/update?index=${index}&title=${xTitle.value}&content=${xContent.value}`)
       .then(function(response) {
         return response.text();
       })

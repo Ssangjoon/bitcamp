@@ -1,56 +1,52 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>연락처</title>
-  </head>
-  <body>
-    <h1>연락처3</h1>
-    <a href="form.html">새 연락처</a>
-    <table id="x-contact-tbl" border="1">
-      <thead>
-        <tr>
-          <th>이름</th>
-          <th>이메일</th>
-          <th>전화</th>
-          <th>회사</th>
-        </tr>
-      </thead>
-      <tbody>
-      </tbody>
-    </table>
-   <script type="text/javascript">
-     var tbody = document.querySelector("#x-contact-tbl tbody")
-     fetch("/contact/list").then(function(response){
-       return response.json(); //js가 읽을수있는 문자열로 변환?
-     }).then(function(arr){
+<head>
+  <meta charset="utf-8">
+  <title>연락처</title>
+</head>
+<body>
+<h1>연락처</h1>
+<a href="form.html">새 연락처</a>
+<table id="x-contact-table" border="1">
+<thead>
+  <tr>
+    <th>이름</th>
+    <th>이메일</th>
+    <th>전화</th>
+    <th>회사</th>
+  </tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 
-       for(var str of arr){
-         console.log(str);
-         var contact = str.split(",") //문자열을 ,로 쪼개서 배열로 만든다.
-         var tr = document.createElement("tr")
-         tr.innerHTML = `<td><a href="view.html?email=${contact[1]}">${contact[0]}</a></td>
-         <td>${contact[1]}</td>
-         <td>${contact[2]}</td>
-         <td>${contact[3]}</td>`
-         tbody.appendChild(tr); // `` 문자열 과 변수 를 함께 사용할 떄 , 문자열이 아닌 템플릿으로 사용된다?
-       }
+<script type="text/javascript">
+  var tbody = document.querySelector("#x-contact-table tbody")
 
-     });
-
-      /*var contacts = [
-      "홍길동, hong@test.com, 010-1111-2222, 비트캠프",
-      "홍길동2, hong@test.com, 010-1111-2222, 비트캠프",
-      "홍길동3, hong@test.com, 010-1111-2222, 비트캠프"
-      ]
-    console.log(contacts[0])*/
-     /* for(var contact of contacts){
-       /*var str = contact.split(",");
-       console.log(str[0])*/
-    //   console.log(contact[3])
-     //}
+  fetch("/contact/list")
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(contacts) {
+      console.log(contacts);
+      for (var contact of contacts) {
+        var tr = document.createElement("tr");
+        tr.innerHTML = `<td><a href="view.html?email=${contact.email}">${contact.name}</a></td>
+        <td>${contact.email}</td>
+        <td>${contact.tel}</td>
+        <td>${contact.company}</td>`;
+        tbody.appendChild(tr);
+      }
+    });
+</script>
 
 
-   </script>
-  </body>
+
+
+
+
+
+
+
+</body>
 </html>

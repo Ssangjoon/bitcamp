@@ -5,46 +5,45 @@
   <title>연락처</title>
 </head>
 <body>
-  <h1>새 연락처</h1>
-  <form class="" >
-    이름:<input id="x-name"type="text"><br>
-    이메일:<input id="x-email"type="email"><br>
-    전화:<input id="x-tel"type="tel"><br>
-    회사:<input id="x-company"type="text"><br>
-    <button id="x-add-btn" type=" button">추가</button>
-    <button id ="x-cancle-btn" type="button">취소</button>
-  </form>
 
- <script type="text/javascript">
-   var xName = document.querySelector("#x-name")
-   var xEmail = document.querySelector("#x-email")
-   var xTel = document.querySelector("#x-tel")
-   var xCompany = document.querySelector("#x-company")
+<h1>새 연락처</h1>
 
-   document.querySelector("#x-add-btn").onclick = function(){
-     fetch(`/contact/add?name=${xName.value}&email=${xEmail.value}&tel=${xTel.value}&company=${xCompany.value}`)
-     .then(function(response){ //서버에서 응답이오면 그 응답정보의 값이 파라미터인 함수를 실행하라.
+<form>
+이름*: <input id="x-name" type="text"><br>
+이메일*: <input id="x-email" type="text"><br>
+전화*: <input id="x-tel" type="text"><br>
+회사: <input id="x-company" type="text"><br>
+별표(*) 항목은 필수 입력입니다.<br>
+<button id="x-add-btn" type="button">등록</button>
+<button id="x-cancel-btn" type="button">취소</button>
+</form>
 
-       //return response.json() -> json형식으로 되어있을 인자값의 응답 데이터를 파싱하여 리턴
-       /* var result = response.text(); 동기 - 편의점 주문
-       response.text().then(function(result) {}); 비동기 - 과장의 업무 할당
-       기다려서 될 일과 그렇지 않은 일의 차이로
-       pc와 pc에 내장된 app 둘이서만 주고 받았으나
-       근래 프로그램밍은 app이 서버컴퓨터와 연결되어 작업을 리턴받기에 시간이 소요되며, 언제 끝날지 예측 불가하다.
-       */
+<script type="text/javascript">
+  var xName = document.querySelector("#x-name");
+  var xEmail = document.querySelector("#x-email");
+  var xTel = document.querySelector("#x-tel");
+  var xCompany = document.querySelector("#x-company");
 
-       return response.text(); //서버에서 보낸 데이터를 그냥 그대로 텍스트로 리턴! JSON문자열로 인식하여 처리 하지말고,
+  document.querySelector("#x-add-btn").onclick = function() {
+    if (xName.value == "" || xEmail.value == "" || xTel.value == "") {
+      window.alert("필수 입력 항목이 비어 있습니다.");
+      return;
+    }
 
-     })
-     .then(function(result){
-       console.log(result)
-       location.href = "index.html"
-     });
-   };
-   document.querySelector("#x-cancle-btn").onclick = function(){
-     window.location.href = "index.html";
-   };
+    fetch(`/contact/add?name=${xName.value}&email=${xEmail.value}&tel=${xTel.value}&company=${xCompany.value}`)
+      .then(function(response) {
+        return response.text();
+      })
+      .then(function(text) {
+        console.log(text);
+        location.href = "index.html";
+      });
+  };
 
- </script>
+  document.querySelector("#x-cancel-btn").onclick = function() {
+    window.location.href = "index.html";
+  };
+</script>
+
 </body>
 </html>
