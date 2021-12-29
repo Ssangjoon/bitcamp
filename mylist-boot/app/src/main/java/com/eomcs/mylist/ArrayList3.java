@@ -1,15 +1,17 @@
 package com.eomcs.mylist;
 
-public class ArrayList2 {
+public class ArrayList3 {
 
   static Object[] list = new Object[5];
   static int size = 0;
 
-  static void add(Object obj) {
-    if (size == list.length) { 
-      list = grow();
+  static Object remove(int index) {
+    Object old = list[index];
+    for (int i = index + 1; i < size; i++) {
+      list[i - 1] = list[i];
     }
-    list[size++] = obj;
+    size--;
+    return old;
   }
 
   static Object[] grow() {
@@ -40,21 +42,19 @@ public class ArrayList2 {
     return arr; 
   }
 
-  static Object remove(int index) {
-    Object old = list[index];
-    for (int i = index + 1; i < size; i++) {
-      list[i - 1] = list[i];
+  static void add(Object contact) {
+    if (size == list.length) { 
+      list = grow();
     }
-    size--;
-    return old;
+    list[size++] = contact;
   }
 
-  static Object set(int index, Object obj) {
+  static Object set(int index, Object contact) {
     if (index < 0 || index >= size) { // 값이 저장된 위치가 무효한 인덱스라면 
       return null;
     }
     Object old = list[index];
-    list[index] = obj;
+    list[index] = contact;
     return old;
   }
 }

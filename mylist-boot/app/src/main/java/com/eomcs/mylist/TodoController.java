@@ -1,9 +1,8 @@
 package com.eomcs.mylist;
 
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController 
+//@RestController 
 public class TodoController {
 
   @RequestMapping("/todo/list")
