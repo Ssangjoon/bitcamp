@@ -1,8 +1,10 @@
-package com.eomcs.mylist;
+package com.eomcs.mylist.controller;
 
 import java.sql.Date;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.eomcs.mylist.domain.Board;
+import com.eomcs.util.ArrayList;
 
 @RestController 
 public class BoardController {
@@ -12,14 +14,14 @@ public class BoardController {
 
   @RequestMapping("/board/list")
   public Object list() {
-    return ArrayList.toArray(boardList); 
+    return boardList.toArray(); 
   }
 
   @RequestMapping("/board/add")
   public Object add(Board board) {
 
     board.setCreatedDate(new Date(System.currentTimeMillis()));
-    ArrayList.add(boardList, board);
+    boardList.add(board);
     return boardList.size;
   }
 
@@ -30,7 +32,7 @@ public class BoardController {
       return "";
     }
     Board board = (Board) boardList.list[index];
-    board.viewCount++; 
+    board.setViewCount(board.getViewCount()+1); 
     return board;
   }
 
@@ -41,10 +43,10 @@ public class BoardController {
     }
 
     Board old = (Board) boardList.list[index];
-    board.viewCount = old.viewCount;
+    board.setViewCount = (old.getViewCount);
     board.createdDate = old.createdDate;
 
-    return ArrayList.set(boardList, index, board) == null ? 0 : 1;
+    return boardList.set(index, board) == null ? 0 : 1;
   }
 
   @RequestMapping("/board/delete")
@@ -52,7 +54,7 @@ public class BoardController {
     if (index < 0 || index >= boardList.size) {
       return 0;
     }
-    return ArrayList.remove(boardList, index) == null ? 0 : 1;
+    return boardList.remove(index) == null ? 0 : 1;
   }
 }
 
