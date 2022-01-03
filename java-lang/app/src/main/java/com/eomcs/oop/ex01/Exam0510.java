@@ -57,7 +57,7 @@ public class Exam0510 {
     Object obj = new Object() {
       String name;
       int age;
-    };
+    };   
   }
 
   static void m1() {

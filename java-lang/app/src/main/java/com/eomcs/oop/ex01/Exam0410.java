@@ -15,7 +15,7 @@ public class Exam0410 {
     s.sum = s.kor + s.eng + s.math;
     s.aver = s.sum / 3;
 
-    System.out.printf("%s: %d, %d, %d, %d, %.1f\n",
+    System.out.printf("%s: %d, %d, %d, %d, %.1f\n",  
         s.name, s.kor, s.eng, s.math, s.sum, s.aver);
   }
 }

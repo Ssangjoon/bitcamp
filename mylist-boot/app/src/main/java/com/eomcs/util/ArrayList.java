@@ -70,6 +70,10 @@ public class ArrayList {
     return this.size;
   }
 
+  public Object get(int index) {
+    return this.list[index];
+  }
+
 }
 
 
