@@ -6,64 +6,59 @@ import com.eomcs.mylist.domain.Contact;
 import com.eomcs.util.ArrayList;
 
 @RestController 
-public class ContactController {
+public class BookController {
 
   // Contact 객체 목록을 저장할 메모리 준비
   // => Object[] list = new Object[5];
   // => int size = 0;
-  ArrayList contactList;
+  ArrayList bookList = new ArrayList();
 
-  public ContactController() {
-    contactList = new ArrayList();
-    System.out.println("ContactController() 호출됨 ");
-  }
-
-  @RequestMapping("/contact/list")
+  @RequestMapping("/book/list")
   public Object list() {
-    return contactList.toArray(); 
+    return bookList.toArray(); 
   }
 
-  @RequestMapping("/contact/add")
+  @RequestMapping("/book/add")
   public Object add(Contact contact) {
     //    System.out.println(contact);
-    contactList.add(contact);
-    return contactList.size();
+    bookList.add(contact);
+    return bookList.size();
   }
 
 
-  @RequestMapping("/contact/get")
+  @RequestMapping("/book/get")
   public Object get(String email) {
     int index = indexOf(email);
     if (index == -1) {
       return "";
     }
-    return contactList.get(index);
+    return bookList.get(index);
   }
 
-  @RequestMapping("/contact/update")
+  @RequestMapping("/book/update")
   public Object update(Contact contact) {
     int index = indexOf(contact.getEmail());
     if (index == -1) {
       return 0;
     }
 
-    return contactList.set(index, contact) == null ? 0 : 1;
+    return bookList.set(index, contact) == null ? 0 : 1;
   }
 
-  @RequestMapping("/contact/delete")
+  @RequestMapping("/book/delete")
   public Object delete(String email) {
     int index = indexOf(email);
     if (index == -1) {
       return 0;
     }
 
-    contactList.remove(index);
+    bookList.remove(index);
     return 1;
   }
 
   int indexOf(String email) {
-    for (int i = 0; i < contactList.size(); i++) {
-      Contact contact =  (Contact) contactList.get(i);
+    for (int i = 0; i < bookList.size(); i++) {
+      Contact contact =  (Contact) bookList.get(i);
       if (contact.getEmail().equals(email)) { 
         return i;
       }

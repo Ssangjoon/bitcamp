@@ -3,6 +3,10 @@ package com.eomcs.mylist.domain;
 public class Todo {
   String title;
   boolean done;
+
+  public Todo() {
+    System.out.println("Todo() 호출");
+  }
   public String getTitle() {
     return title;
   }

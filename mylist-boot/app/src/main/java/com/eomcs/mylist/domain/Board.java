@@ -4,6 +4,10 @@ public class Board {
   String title;
   String content;
   int viewCount;
+
+  public Board() {
+    System.out.println("Board 호출");
+  }
   java.sql.Date createdDate;
   public String getTitle() {
     return title;
