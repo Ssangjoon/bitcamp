@@ -12,9 +12,9 @@
 제목*: <input id="x-title" type="text"><br>
 저자*: <input id="x-author" type="text"><br>
 출판사*: <input id="x-press" type="text" readonly><br>
-페이지: <input id="x-page" type="text"><br>
+페이지: <input id="x-page" type="number"><br>
 가격: <input id="x-price" type="text"><br>
-읽은 날짜: <input id="x-readDate" type="text"><br>
+읽은 날짜: <input id="x-readDate" type="date"><br>
 소감: <input id="x-feed" type="text"><br>
 별표(*) 항목은 필수 입력입니다.<br>
 <button id="x-update-btn" type="button">변경</button>
@@ -38,13 +38,13 @@
 
   // 2) 쿼리 스트링에서 email 값을 추출한다.
   var params = new URLSearchParams(qs);
-  var email = params.get("press");
+  var press = params.get("press");
 
-  if (email == null) {
+  if (press == null) {
     alert("이메일 값이 없습니다.");
     throw "파라미터 오류!";
   }
-  console.log(email);
+  console.log(press);
 
   var xTitle = document.querySelector("#x-title");
   var xAuthor = document.querySelector("#x-author");
@@ -55,7 +55,7 @@
   var xFeed = document.querySelector("#x-feed");
 
   // 3) 서버에서 데이터 가져오기
-  fetch(`/contact/get?press=${press}`)
+  fetch(`/book/get?press=${press}`)
     .then(function(response) {
       return response.json();
     })
@@ -91,7 +91,7 @@
   };
 
   document.querySelector("#x-delete-btn").onclick = function() {
-    fetch(`/contact/delete?email=${press}`)
+    fetch(`/book/delete?press=${press}`)
       .then(function(response) {
         return response.json();
       })

@@ -2,7 +2,7 @@ package com.eomcs.mylist.controller;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.eomcs.mylist.domain.Contact;
+import com.eomcs.mylist.domain.Book;
 import com.eomcs.util.ArrayList;
 
 @RestController 
@@ -19,16 +19,16 @@ public class BookController {
   }
 
   @RequestMapping("/book/add")
-  public Object add(Contact contact) {
-    //    System.out.println(contact);
-    bookList.add(contact);
+  public Object add(Book book) {
+    //    System.out.println(book);
+    bookList.add(book);
     return bookList.size();
   }
 
 
   @RequestMapping("/book/get")
-  public Object get(String email) {
-    int index = indexOf(email);
+  public Object get(String press) {
+    int index = indexOf(press);
     if (index == -1) {
       return "";
     }
@@ -36,18 +36,18 @@ public class BookController {
   }
 
   @RequestMapping("/book/update")
-  public Object update(Contact contact) {
-    int index = indexOf(contact.getEmail());
+  public Object update(Book book) {
+    int index = indexOf(book.getPress());
     if (index == -1) {
       return 0;
     }
 
-    return bookList.set(index, contact) == null ? 0 : 1;
+    return bookList.set(index, book) == null ? 0 : 1;
   }
 
   @RequestMapping("/book/delete")
-  public Object delete(String email) {
-    int index = indexOf(email);
+  public Object delete(String press) {
+    int index = indexOf(press);
     if (index == -1) {
       return 0;
     }
@@ -56,10 +56,10 @@ public class BookController {
     return 1;
   }
 
-  int indexOf(String email) {
+  int indexOf(String press) {
     for (int i = 0; i < bookList.size(); i++) {
-      Contact contact =  (Contact) bookList.get(i);
-      if (contact.getEmail().equals(email)) { 
+      Book contact =  (Book) bookList.get(i);
+      if (contact.getPress().equals(press)) { 
         return i;
       }
     }

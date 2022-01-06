@@ -5,17 +5,16 @@
   <title>독서목록</title>
 </head>
 <body>
-
 <h1>새로 읽은 책</h1>
 
 <form>
   제목*: <input id="x-title" type="text"><br>
   저자*: <input id="x-author" type="text"><br>
-  출판사*: <input id="x-press" type="text" readonly><br>
-  페이지: <input id="x-page" type="text"><br>
+  출판사*: <input id="x-press" type="text"><br>
+  페이지: <input id="x-page" type="number"><br>
   가격: <input id="x-price" type="text"><br>
-  읽은 날짜: <input id="x-readDate" type="text"><br>
-  소감: <input id="x-feed" type="text"><br>
+  읽은 날짜: <input id="x-readDate" type="date"><br>
+  소감: <textarea id="x-feed" cols="60" rows="10" ></textarea><br>
 별표(*) 항목은 필수 입력입니다.<br>
 <button id="x-add-btn" type="button">등록</button>
 <button id="x-cancel-btn" type="button">취소</button>
@@ -36,9 +35,10 @@ var xFeed = document.querySelector("#x-feed");
       return;
     }
 
-    fetch(`/book/update?title=${xTitle.value}&author=${xAuthor.value}&press=${xPress.value}&page=${xPage.value}&price=${xPrice.value}&readDate=${xReadDate.value}&feed=${xFeed.value}`)
+    fetch(`/book/add?title=${xTitle.value}&author=${xAuthor.value}&press=${xPress.value}&page=${xPage.value}&price=${xPrice.value}&readDate=${xReadDate.value}&feed=${xFeed.value}`)
       .then(function(response) {
-        return response.text();
+        console.log(response);
+        return response.json();
       })
       .then(function(text) {
         console.log(text);

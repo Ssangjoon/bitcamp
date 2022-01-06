@@ -10,10 +10,13 @@
 <table id="x-contact-table" border="1">
 <thead>
   <tr>
-    <th>이름</th>
-    <th>이메일</th>
-    <th>전화</th>
-    <th>회사</th>
+    <th>제목</th>
+    <th>저자</th>
+    <th>출판사</th>
+    <th>페이지</th>
+    <th>가격</th>
+    <th>읽은 날짜</th>
+    <th>소감</th>
   </tr>
 </thead>
 <tbody>
@@ -25,6 +28,7 @@
 
   fetch("/book/list")
     .then(function(response) {
+      console.log(response);
       return response.json();
     })
     .then(function(contacts) {
