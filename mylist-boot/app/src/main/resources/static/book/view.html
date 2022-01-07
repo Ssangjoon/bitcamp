@@ -69,6 +69,15 @@
       xReadDate.value = contact.readDate;
       xFeed.value = contact.feed;
     });
+    bookInfo = {
+      title : xTitle.value,
+      author : xAuthor.value,
+      press : xPress.value,
+      page : xPage.value,
+      price : xPrice.value,
+    readDate : xReadDate.value,
+    feed: xFeed.value
+    }
 
   document.querySelector("#x-update-btn").onclick = function() {
     if (xTitle.value == "" || xAuthor.value == "") {
@@ -76,8 +85,14 @@
       return;
     }
 
-    fetch(`/book/update?title=${xTitle.value}&author=${xAuthor.value}&press=${xPress.value}&page=${xPage.value}&price=${xPrice.value}&readDate=${xReadDate.value}&feed=${xFeed.value}`)
-      .then(function(response) {
+    fetch('/book/add', {
+      headers: {
+        'Content-Type': 'application/json;charset=utf-8',
+              },
+      method : 'POST',
+      body : JSON.stringify(bookInfo)
+    })
+    .then(function(response) {
         return response.text();
       })
       .then(function(text) {
@@ -100,7 +115,7 @@
         location.href = "index.html";
       });
   };
-
+//`/book/add?title=${encodeURIComponent(xTitle.value)}&author=${encodeURIComponent(xAuthor.value)}&press=${encodeURIComponent(xPress.value)}&page=${encodeURIComponent(xPage.value)}&price=${encodeURIComponent(xPrice.value)}&readDate=${encodeURIComponent(xReadDate.value)}&feed=${encodeURIComponent(xFeed.value)}
 </script>
 
 </body>

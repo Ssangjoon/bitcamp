@@ -1,5 +1,7 @@
 package com.eomcs.mylist.controller;
 
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.mylist.domain.Book;
@@ -18,8 +20,8 @@ public class BookController {
     return bookList.toArray(); 
   }
 
-  @RequestMapping("/book/add")
-  public Object add(Book book) {
+  @PostMapping(value = "/book/add")
+  public Object add(@RequestBody Book book) {
     //    System.out.println(book);
     bookList.add(book);
     return bookList.size();
