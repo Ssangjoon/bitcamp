@@ -7,12 +7,16 @@ package com.eomcs.oop.ex05.x1.test5;
 public class CalculatorTest {
   public static void main(String[] args) {
     Calculator2 c = new Calculator2();
+    Calculator3 c3 = new Calculator3();
 
     c.plus(100);
     c.minus(200);
     c.multiple(2);
+    c3.plus(100);
+    c3.devide(4);
 
     System.out.println(c.getResult());
+    System.out.println("c3:::" + c3.result);
   }
 }
 
