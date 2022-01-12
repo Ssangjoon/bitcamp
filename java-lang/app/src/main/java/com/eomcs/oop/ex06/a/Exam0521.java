@@ -16,6 +16,7 @@ public class Exam0521 {
     }
   }
 
+
   static void printCar(Vehicle v) {
     System.out.printf("모델: %s\n", v.model);
     System.out.printf("수용인원: %s\n", v.capacity);
