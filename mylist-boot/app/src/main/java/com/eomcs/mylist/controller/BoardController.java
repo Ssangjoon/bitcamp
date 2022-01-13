@@ -1,5 +1,7 @@
 package com.eomcs.mylist.controller;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.sql.Date;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,14 +16,19 @@ public class BoardController {
 
   public BoardController() throws Exception {
     System.out.println("BoardController() 호출됨!");
-    com.eomcs.io.FileReader2 in = new com.eomcs.io.FileReader2("boards.csv");
+
+    //1) 주 작업 객체(concrete componet)준비 
+    FileReader in = new FileReader("boards.csv");
+
+    //2) 한줄 단위로 데이터를 읽는 작업을 수행하는 데코레이터 준비
+    BufferedReader in2 = new BufferedReader(in);
 
     String line;
-    while ((line = in.readLine()).length() != 0) { // 빈 줄을 리턴 받았으면 읽기를 종료한다.
+    while ((line = in2.readLine()) != null) { // 한줄의 문자열을 읽었으면, 
       boardList.add(Board.valueOf(line)); 
     }
-
-    in.close();
+    in2.close();
+    //in.close(); // 데코레이터를 close()하면 그 데코레이터와 연결된 객체들도 모두 close()된다. 
   }
 
   @RequestMapping("/board/list")

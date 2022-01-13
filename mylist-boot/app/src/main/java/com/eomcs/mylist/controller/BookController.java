@@ -1,5 +1,7 @@
 package com.eomcs.mylist.controller;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import com.eomcs.io.FileWriter2;
@@ -13,7 +15,8 @@ public class BookController {
 
   public BookController() throws Exception {
     System.out.println("BookController() 호출됨!");
-    com.eomcs.io.FileReader2 in = new com.eomcs.io.FileReader2("books.csv");
+    FileReader in;
+    BufferedReader in2 = new BufferedReader(new FileReader("books.csv"));
 
     String line;
     while ((line = in.readLine()).length() != 0) { // 빈 줄을 리턴 받았으면 읽기를 종료한다.
