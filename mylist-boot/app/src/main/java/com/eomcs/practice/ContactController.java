@@ -9,57 +9,49 @@ import org.springframework.web.bind.annotation.RestController;
 public class ContactController {
 
 
-
-  @RequestMapping("/practice/list")
+  @RequestMapping("/contact/list")
   public Object list() {
-    return ArrayList0.toArray(); 
+    return ArrayList.toArray(); 
   }
 
-
-  @RequestMapping("/practice/add")
+  @RequestMapping("/contact/add")
   public Object add(Contact contact) {
-    ArrayList0.add(contact);
-    return ArrayList0.size;
+    //    System.out.println(contact);
+    ArrayList.add(contact);
+    return ArrayList.size;
   }
 
-  @RequestMapping("/practice/get")
+
+  @RequestMapping("/contact/get")
   public Object get(String email) {
-    int index = indexOf(email);
+    int index = ArrayList.indexOf(email);
     if (index == -1) {
       return "";
     }
-    return ArrayList0.list[index];
+
+    return ArrayList.contacts[index];
   }
 
-  @RequestMapping("/practice/update")
+  @RequestMapping("/contact/update")
   public Object update(Contact contact) {
-    int index = indexOf(contact.email);
+    int index = ArrayList.indexOf(contact.email);
     if (index == -1) {
       return 0;
     }
-    return ArrayList0.set(index, contact) == null ? 0 : 1;
+
+    return ArrayList.set(index, contact) == null ? 0 : 1;
   }
 
-  @RequestMapping("/practice/delete")
+  @RequestMapping("/contact/delete")
   public Object delete(String email) {
-    int index = indexOf(email);
+    int index = ArrayList.indexOf(email);
     if (index == -1) {
       return 0;
     }
-    ArrayList0.remove(index);
+
+    ArrayList.remove(index);
     return 1;
   }
-
-  static int indexOf(String email) {
-    for (int i = 0; i < ArrayList0.size; i++) {
-      Contact contact = (Contact)ArrayList0.list[i];
-      if(contact.email.equals(email)) {
-        return i;
-      }
-    }
-    return -1;
-  }
-
 }
 
 
