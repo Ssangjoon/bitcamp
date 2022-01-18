@@ -20,10 +20,10 @@ public class Exam0520 {
         b = b << 8 | in.read();
       }
       System.out.printf("%x\n", b);
+
     }
 
     in.close();
-
   }
 
 }

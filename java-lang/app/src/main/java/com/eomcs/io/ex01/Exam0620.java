@@ -27,7 +27,7 @@ public class Exam0620 {
     File dir = new File(".");
 
     // => 확장자가 .java 인 파일의 이름만 추출하기
-    // 1) 필터 준비
+    // 1) 필터 준비 
     JavaFilter javaFilter = new JavaFilter();
 
     // 2) 필터를 사용하여 디렉토리의 목록을 가져오기
