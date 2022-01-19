@@ -1,8 +1,13 @@
 package com.eomcs.mylist.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.eomcs.io.FileWriter2;
 import com.eomcs.mylist.domain.Todo;
 import com.eomcs.util.ArrayList;
 
@@ -13,15 +18,25 @@ public class TodoController {
 
   public TodoController() throws Exception {
     System.out.println("TodoController() 호출됨!");
-    com.eomcs.io.FileReader2 in = new com.eomcs.io.FileReader2("todos.csv");
+    try {
+      ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("todos.ser2")));
 
-    String line;
-    while ((line = in.readLine()).length() != 0) { // 빈 줄을 리턴 받았으면 읽기를 종료한다.
-      todoList.add(Todo.valueOf(line)); 
-    }
-
-    in.close();
-  }
+      //    while (true) {
+      //      try {
+      //        Todo todo = new Todo();
+      //        todo.setTitle(in.readUTF());
+      //        todo.setDone(in.readBoolean());
+      //
+      //        todoList.add(todo);
+      //      } catch (Exception e) {
+      //        break;
+      //      }
+      //    }
+      todoList = (ArrayList)in.readObject();
+      in.close();
+    } catch(Exception e) {
+      System.out.println("투두 데이터를 로딩 하는 중 오류 발생");
+    }}
 
   @RequestMapping("/todo/list")
   public Object list() {
@@ -68,16 +83,18 @@ public class TodoController {
 
   @RequestMapping("/todo/save")
   public Object save() throws Exception {
-    FileWriter2 out = new FileWriter2("todos.csv"); // 따로 경로를 지정하지 않으면 파일은 프로젝트 폴더에 생성된다.
+    ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("todos.ser2")));
 
-    Object[] arr = todoList.toArray();
-    for (Object obj : arr) {
-      Todo todo = (Todo) obj;
-      out.println(todo.toCsvString());
-    }
+    //    Object[] arr = todoList.toArray();
+    //    for (Object obj : arr) {
+    //      Todo todo = (Todo) obj;
+    //      out.writeUTF(todo.getTitle());
+    //      out.writeBoolean(todo.isDone());
+    //    }
 
+    out.writeObject(todoList);
     out.close();
-    return arr.length;
+    return todoList.size();
   }
 }
 

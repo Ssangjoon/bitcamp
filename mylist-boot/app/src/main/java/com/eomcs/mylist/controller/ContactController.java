@@ -1,29 +1,45 @@
 package com.eomcs.mylist.controller;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.eomcs.io.FileWriter2;
 import com.eomcs.mylist.domain.Contact;
 import com.eomcs.util.ArrayList;
 
 @RestController 
 public class ContactController {
 
-  ArrayList contactList;
+  ArrayList contactList = new ArrayList();
 
   public ContactController() throws Exception {
-    contactList = new ArrayList();
     System.out.println("ContactController() 호출됨!");
+    try {
+      ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("contacts.ser2")));
 
-    com.eomcs.io.FileReader2 in = new com.eomcs.io.FileReader2("contacts.csv");
+      //    while (true) {
+      //      try {
+      //        Contact contact = new Contact();
+      //        contact.setName(in.readUTF());
+      //        contact.setEmail(in.readUTF());
+      //        contact.setTel(in.readUTF());
+      //        contact.setCompany(in.readUTF());
+      //
+      //        contactList.add(contact);
+      //      } catch (Exception e) {
+      //        break;
+      //      }
+      //    }
+      contactList = (ArrayList)in.readObject();
 
-    String line;
-    while ((line = in.readLine()).length() != 0) { // 빈 줄을 리턴 받았으면 읽기를 종료한다.
-      contactList.add(Contact.valueOf(line)); // 파일에서 읽은 한 줄의 CSV 데이터로 객체를 만든 후 목록에 등록한다.
-    }
-
-    in.close();
-  }
+      in.close();
+    } catch (Exception e) {
+      System.out.println("컨택트 데이터를 로딩 하는 중 오류 발생");
+    }}
 
   @RequestMapping("/contact/list")
   public Object list() {
@@ -70,16 +86,20 @@ public class ContactController {
 
   @RequestMapping("/contact/save")
   public Object save() throws Exception {
-    FileWriter2 out = new FileWriter2("contacts.csv"); // 따로 경로를 지정하지 않으면 파일은 프로젝트 폴더에 생성된다.
+    ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("contacts.ser2")));
 
-    Object[] arr = contactList.toArray();
-    for (Object obj : arr) {
-      Contact contact = (Contact) obj;
-      out.println(contact.toCsvString());
-    }
+    //    Object[] arr = contactList.toArray();
+    //    for (Object obj : arr) {
+    //      Contact contact = (Contact) obj;
+    //      out.writeUTF(contact.getName());
+    //      out.writeUTF(contact.getEmail());
+    //      out.writeUTF(contact.getTel());
+    //      out.writeUTF(contact.getCompany());
+    //    }
+    out.writeObject(contactList);
 
     out.close();
-    return arr.length;
+    return contactList.size();
   }
 
   int indexOf(String email) {
