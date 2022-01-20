@@ -19,6 +19,7 @@ public class Exam0310 {
 
     out.close();
 
+    //System.out.printf("serialVersionUID = %d\n", );
     System.out.println("출력 완료!");
   }
 
