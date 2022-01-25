@@ -1,101 +1,48 @@
 package com.eomcs.mylist.controller;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedOutputStream;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import com.eomcs.mylist.dao.TodoDao;
 import com.eomcs.mylist.domain.Todo;
-import com.eomcs.util.ArrayList;
 
 @RestController 
 public class TodoController {
 
-  ArrayList todoList = new ArrayList();
-
-  public TodoController() throws Exception {
-    System.out.println("TodoController() 호출됨!");
-    try {
-      ObjectInputStream in = new ObjectInputStream(new BufferedInputStream(new FileInputStream("todos.ser2")));
-
-      //    while (true) {
-      //      try {
-      //        Todo todo = new Todo();
-      //        todo.setTitle(in.readUTF());
-      //        todo.setDone(in.readBoolean());
-      //
-      //        todoList.add(todo);
-      //      } catch (Exception e) {
-      //        break;
-      //      }
-      //    }
-      todoList = (ArrayList)in.readObject();
-      in.close();
-    } catch(Exception e) {
-      System.out.println("투두 데이터를 로딩 하는 중 오류 발생");
-    }}
+  @Autowired
+  TodoDao todoDao;
 
   @RequestMapping("/todo/list")
   public Object list() {
-    return todoList.toArray(); 
+    return todoDao.findAll(); 
   }
 
   @RequestMapping("/todo/add")
-  public Object add(Todo todo) {
-    todoList.add(todo);
-    return todoList.size();
+  public Object add(Todo todo) throws Exception {
+    todoDao.insert(todo);
+    return todoDao.countAll();
   }
 
   @RequestMapping("/todo/update")
-  public Object update(int index, Todo todo) {
-    if (index < 0 || index >= todoList.size()) {
+  public Object update(int index, Todo todo) throws Exception {
+    Todo old = todoDao.findByNo(index);
+    if (old == null) {
       return 0;
     }
-
-    Todo old = (Todo) todoList.get(index);
     todo.setDone(old.isDone()); // 기존의 체크 정보를 그대로 가져가야 한다.
-
-    return todoList.set(index, todo) == null ? 0 : 1;
+    return todoDao.update(index, todo);
   }
 
   @RequestMapping("/todo/check")
-  public Object check(int index, boolean done) {
-    if (index < 0 || index >= todoList.size()) {
-      return 0;  // 인덱스가 무효해서 설정하지 못했다.
-    }
-
-    ((Todo) todoList.get(index)).setDone(done);
-    return 1; // 해당 항목의 상태를 변경했다.
+  public Object check(int index, boolean done) throws Exception {
+    return todoDao.updateDone(index, done);
   }
 
   @RequestMapping("/todo/delete")
-  public Object delete(int index) {
-    if (index < 0 || index >= todoList.size()) {
-      return 0;
-    }
-
-    todoList.remove(index);
-    return 1;
+  public Object delete(int index) throws Exception {
+    return todoDao.delete(index);
   }
 
-  @RequestMapping("/todo/save")
-  public Object save() throws Exception {
-    ObjectOutputStream out = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream("todos.ser2")));
-
-    //    Object[] arr = todoList.toArray();
-    //    for (Object obj : arr) {
-    //      Todo todo = (Todo) obj;
-    //      out.writeUTF(todo.getTitle());
-    //      out.writeBoolean(todo.isDone());
-    //    }
-
-    out.writeObject(todoList);
-    out.close();
-    return todoList.size();
-  }
 }
 
 

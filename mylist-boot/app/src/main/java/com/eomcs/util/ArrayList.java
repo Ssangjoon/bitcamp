@@ -1,11 +1,19 @@
 package com.eomcs.util;
 
-public class ArrayList implements java.io.Serializable{
+public class ArrayList implements java.io.Serializable {
 
   // 인스턴스 필드(변수)
   // => 인스턴스 필드는 new 명령을 통해 생성한다.
   Object[] list = new Object[5];
   int size = 0;
+
+
+
+  public ArrayList() {}
+
+  public ArrayList(Object[] arr) {
+    this.addAll(arr);
+  }
 
   // 인스턴스 주소를 앞쪽에서 받으려면 static 키워드를 붙이면 안된다.
   // 즉 non-static 메서드로 정의해야 한다.
@@ -15,6 +23,12 @@ public class ArrayList implements java.io.Serializable{
       this.list = this.grow();
     }
     this.list[this.size++] = obj;
+  }
+
+  public void addAll(Object[] arr) {
+    for(Object obj:arr) {
+      this.add(obj);
+    }
   }
 
   Object[] grow() {
@@ -73,7 +87,6 @@ public class ArrayList implements java.io.Serializable{
   public Object get(int index) {
     return this.list[index];
   }
-
 }
 
 
