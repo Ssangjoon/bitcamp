@@ -14,6 +14,7 @@ public class Receiver {
     // 1) 다른 컴퓨터의 연결 요청을 기다린다.
     // - new ServerSocket(포트번호)
     // - 포트번호: 
+    //   - 호스트에서 실행중인 서버 프로그램을 구분하는 번호. 
     //   - 1024 ~ 49151 사이의 값 사용한다.
     //   - 같은 컴퓨터에서 이미 사용중인 포트 번호는 지정할 수 없다.
     //   - 예) Oracle DBMS(1521), MySQL DBMS(3306) 등
@@ -40,7 +41,7 @@ public class Receiver {
     System.out.printf("상대편> %s\n", str);
 
     // 5) 상대편으로 문자열을 한 줄 보낸다.
-    out.println("나는 엄진영입니다. 반갑습니다!");
+    out.println("나는이상준(리시버)입니다. 반갑습니다!");
 
     // 6) 항상 입출력 도구는 사용 후 닫아야 한다.
     in.close();
