@@ -79,20 +79,27 @@ public class CalculatorServer {
             out.flush();
             break;
           }
+          
+          try {
           String[] values = str.split(str);
           int a = Integer.parseInt(values[0]);
           int b = Integer.parseInt(values[2]);
           String op = values[1];
 
           switch(op) {
-            case "+":out.printf("", values);
-            case "-":break;
-            case "*":break;
-            case "/":break;
-            case "%":break;
-            default: 
+            case "+": out.printf("%d %s %d = %d\n", a, op, b, a + b); break;
+            case "-": out.printf("%d %s %d = %d\n", a, op, b, a - b); break;
+            case "*": out.printf("%d %s %d = %d\n", a, op, b, a * b); break;
+            case "/": out.printf("%d %s %d = %d\n", a, op, b, a / b); break;
+            case "%": out.printf("%d %s %d = %d\n", a, op, b, a % b); break;
+            default:  out.printf("%d %s %d = %s\n", a, op, b, "지원하지 않는 연산입니다");
           }
           out.flush();
+          
+        }catch(Exception e) {
+          out.println("계산중 오류발생 " + e.getMessage());
+          out.flush();
+        }
         }
       } catch (Exception e) {
         System.out.println("클라이언트 요청 처리 중 오류 발생!");
