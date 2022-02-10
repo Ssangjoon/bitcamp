@@ -1,4 +1,4 @@
-package com.eomcs.oop.ex11.overview.step5;
+package com.eomcs.oop.ex11.overview.step7;
 
 import java.util.EmptyStackException;
 
@@ -17,20 +17,18 @@ public class MyStack extends MyList {
 
   @Override
   public Iterator iterator() {
-    return new StackIterator();
+    return new Iterator() {
+
+      @Override
+      public boolean hasNext() {
+        return MyStack.this.size() > 0;
+      }
+
+      @Override
+      public Object next() {
+        return MyStack.this.pop();
+      }
+    };
   }
 
-  class StackIterator implements Iterator {
-
-
-    @Override
-    public boolean hasNext() {
-      return MyStack.this.size() > 0;
-    }
-
-    @Override
-    public Object next() {
-      return MyStack.this.pop();
-    }
-  }
 }
