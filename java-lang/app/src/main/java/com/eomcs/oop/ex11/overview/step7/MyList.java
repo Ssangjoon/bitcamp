@@ -40,9 +40,13 @@ public class MyList {
     return old;
   }
 
-
   public Iterator iterator() {
-    return  new Iterator() {
+    // anonymous class(익명 클래스)
+    // - 클래스의 이름이 없다. 
+    // - 그래서 클래스를 정의한 후 따로 인스턴스를 생성할 수 없다.
+    // - 클래스 정의와 인스턴스 생성 문장이 합쳐져 있다.
+    //
+    return new Iterator() {
       int cursor;
       @Override
       public boolean hasNext() {
@@ -54,7 +58,6 @@ public class MyList {
       }
     };
   }
-
 }
 
 

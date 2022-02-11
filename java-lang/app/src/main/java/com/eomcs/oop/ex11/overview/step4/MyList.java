@@ -44,6 +44,10 @@ public class MyList {
     return new ListIterator(this);
   }
 
+  // static nested class(스태틱 중첩 클래스)
+  // - ListIterator는 MyList 클래스에서만 직접 사용된다.
+  // - 중첩 클래스 문법을 사용하여 명학하게 ListIterator의 사용범위를 제한한다.
+  //
   static class ListIterator implements Iterator {
 
     MyList list;
@@ -63,6 +67,7 @@ public class MyList {
       return list.get(cursor++);
     }
   }
+
 }
 
 
