@@ -1,4 +1,4 @@
-package com.eomcs.oop.ex11.h.test;
+package com.eomcs.algorithm.data_structure.linkedlist2.step3;
 
 public class Test {
 
@@ -12,27 +12,44 @@ public class Test {
     list.add("김구");
     System.out.println(list.size());
 
-    for (int i = 0; i < list.size(); i++) {
-      System.out.print(list.get(i) + ",");
-    }
-    System.out.println();
-    System.out.println("----------------------------------------------------");
+    printList(list);
 
     list.remove(0); // 홍길동 
     list.remove(4); // 김구
     list.remove(2); // 안중근
-    for (int i = 0; i < list.size(); i++) {
-      System.out.print(list.get(i) + ",");
-    }
-    System.out.println();
-    System.out.println("----------------------------------------------------");
+    printList(list);
 
     list.remove(0);
     list.remove(0);
     list.remove(0);
     list.add("박보검");
-    for (int i = 0; i < list.size(); i++) {
-      System.out.print(list.get(i) + ",");
+    printList(list);
+
+    list.add("홍길동");
+    list.add("임꺽정");
+    list.add("유관순");
+    list.add("안중근");
+    list.add("윤봉길");
+    printList(list);
+
+    list.add(0, "김구");
+    list.add(0, "안창호");
+    printList(list);
+
+    list.add(7, "김상옥");
+    printList(list);
+
+    list.set(4, "오호라");
+    printList(list);
+
+  }
+
+  static void printList(LinkedList list) {
+    // Iterator를 통해 목록에서 값 꺼내기
+    //
+    Iterator iterator = list.iterator();
+    while (iterator.hasNext()) {
+      System.out.print(iterator.next() + ",");
     }
     System.out.println();
     System.out.println("----------------------------------------------------");
