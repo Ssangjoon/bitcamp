@@ -96,8 +96,18 @@ public class LinkedList {
     return node;
   }
 
-  public Iterator iteraotr() {
-    return this.new ListIterator();
+  public Iterator iterator() {
+    return new Iterator(){
+      int cursor;
+      @Override
+      public boolean hasNext() {
+        return cursor < LinkedList.this.size();
+      }
+      @Override
+      public Object next() {
+        return LinkedList.this.get(cursor++);
+      }
+    };
   }
 
   // Static Nested Class 활용 예
@@ -115,23 +125,7 @@ public class LinkedList {
     }
   }
 
-  //Non-static Nested Class(= inner class) 활용 예
-  // => 특정 클래스의 안에서만 사용될 때
-  // => 바깥 클래스의 인스턴스 멤버를 사용할 때
-  // 
-  private class ListIterator implements Iterator{
 
-    int cursor;
-
-    @Override
-    public boolean hasNext() {
-      return cursor < LinkedList.this.size();
-    }
-    @Override
-    public Object next() {
-      return LinkedList.this.get(cursor++);
-    }
-  }
 }
 
 
