@@ -1,12 +1,16 @@
 package com.eomcs.app2.vo;
 
-public class Score {
+import java.io.Serializable;
+
+public class Score  implements Serializable {
+  private static final long serialVersionUID = 1L;
+
   String name;
   int kor;
   int eng;
   int math;
   int sum;
-  float aver;
+  float average;
 
   public static Score fromCSV(String csv) {
     String[] values = csv.split(",");
@@ -19,7 +23,7 @@ public class Score {
   }
 
   public String toCSV() {
-    return  String.format("%s,%d,%d,%d",
+    return String.format("%s,%d,%d,%d", 
         this.getName(),
         this.getKor(),
         this.getEng(),
@@ -28,7 +32,7 @@ public class Score {
 
   private void compute() {
     sum = kor + eng + math;
-    aver = sum / 3f;
+    average = sum / 3f;
   }
 
   public String getName() {
@@ -61,14 +65,15 @@ public class Score {
   public int getSum() {
     return sum;
   }
-  public float getAver() {
-    return aver;
+  public float getAverage() {
+    return average;
   }
 
   @Override
   public String toString() {
     return "Score [name=" + name + ", kor=" + kor + ", eng=" + eng + ", math=" + math + ", sum="
-        + sum + ", aver=" + aver + "]";
+        + sum + ", average=" + average + "]";
   }
+
 
 }
