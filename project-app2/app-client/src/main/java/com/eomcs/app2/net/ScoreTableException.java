@@ -1,60 +1,32 @@
 package com.eomcs.app2.net;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.util.ArrayList;
-import com.eomcs.app2.vo.Score;
+// 서버의 ScoreTable을 다루다가 예외가 발생했을 때
+// 그 상황을 직관적으로 알 수 있도록 
+// 별도의 서브 클래스를 정의하였다.
+// => 즉 예외가 발생했을 때 예외 클래스 이름만으로도 
+//    어떤 상황에서 발생된 예외인지 바로 알 수 있도록 하기 위함이다.
+//
+public class ScoreTableException extends RuntimeException {
+  private static final long serialVersionUID = 1L;
 
-public class ScoreTableException {
-  static ArrayList<Score> scores = new ArrayList<>();
-
-  static {
-    try (BufferedReader in = new BufferedReader(new FileReader("./score.csv"));) {
-      String line;
-      while ((line = in.readLine()) != null) {
-        scores.add(Score.fromCSV(line));
-      }
-    } catch (Exception e) {
-      System.out.println("데이터 로딩 중 오류 발생!");
-    }
+  public ScoreTableException() {
+    super();
   }
 
-  private static void save() {
-    try (PrintWriter out = new PrintWriter(new FileWriter("./score.csv"));) {
-      for (Score score : scores) {
-        out.println(score.toCSV());
-      }
-    } catch (Exception e) {
-      System.out.println("데이터 저장 중 오류 발생!");
-    }
+  public ScoreTableException(String message, Throwable cause, boolean enableSuppression,
+      boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
   }
 
-  public static int insert(Score score) {
-    scores.add(score);
-    save();
-    return 1;
+  public ScoreTableException(String message, Throwable cause) {
+    super(message, cause);
   }
 
-  public static Score[] selectList() {
-    return scores.toArray(new Score[0]);
+  public ScoreTableException(String message) {
+    super(message);
   }
 
-  public static Score selectOne(int no) {
-    return scores.get(no);
+  public ScoreTableException(Throwable cause) {
+    super(cause);
   }
-
-  public static int update(int no, Score score) {
-    scores.set(no, score);
-    save();
-    return 1;
-  }
-
-  public static int delete(int no) {
-    scores.remove(no);
-    save();
-    return 1;
-  }
-
 }
