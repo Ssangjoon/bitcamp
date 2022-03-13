@@ -19,17 +19,18 @@ import com.eomcs.mylist.domain.Board;
 @Repository  
 public class BoardDaoImpl implements BoardDao {
 
-  @Autowired // => 스프링 프레임워크에게 보관된 객체 중에서 다음 타입의 객체가 있다면 주입 해줄것을 지시하는 애노테이션 
+  @Autowired // => 스프링 부트가 보관하고 있는 객체 중에서 다음 타입의 객체가 있다면 주입해 줄 것을 지시하는 애노테이션
   DataSource dataSource;
+
   public BoardDaoImpl() {
-    System.out.println("BoardDaoImpl 객체 생성!");
+    System.out.println("BoardDao 객체 생성!");
   }
 
   @Override
   public int countAll() {
     try (Connection con = dataSource.getConnection();
-        //DataSource 에서 얻은 커텍션 객체는 close 할때 연결을 끊는 것이 아니라 DataSource에 반납된다. 
-        PreparedStatement stmt = con.prepareStatement( //
+        // DataSource에서 얻은 커넥션 객체는 close() 할 때 연결을 끊는 것이 아니라 DataSource에 반납된다.
+        PreparedStatement stmt = con.prepareStatement( 
             "select count(*) from ml_board");
         ResultSet rs = stmt.executeQuery()) {
 
@@ -57,22 +58,22 @@ public class BoardDaoImpl implements BoardDao {
         arr.add(board);
       }
       return arr;
-    }catch (Exception e) {
+    } catch (Exception e) {
       throw new DaoException(e);
     }
   }
 
   @Override
-  public int insert(Board board){
+  public int insert(Board board) {
     try (Connection con = dataSource.getConnection();
-        PreparedStatement stmt =
-            con.prepareStatement("insert into ml_board(title,content) values(?,?)");) {
+        PreparedStatement stmt = con.prepareStatement(
+            "insert into ml_board(title,content) values(?,?)");) {
 
       stmt.setString(1, board.getTitle());
       stmt.setString(2, board.getContent());
 
       return stmt.executeUpdate();
-    }catch (Exception e) {
+    } catch (Exception e) {
       throw new DaoException(e);
     }
   }
@@ -97,10 +98,9 @@ public class BoardDaoImpl implements BoardDao {
         board.setViewCount(rs.getInt("view_count"));
         return board;
       }
-    }catch (Exception e) {
+    } catch (Exception e) {
       throw new DaoException(e);
     }
-
   }
 
   @Override
@@ -114,7 +114,7 @@ public class BoardDaoImpl implements BoardDao {
       stmt.setInt(3, board.getNo());
 
       return stmt.executeUpdate();
-    }catch (Exception e) {
+    } catch (Exception e) {
       throw new DaoException(e);
     }
   }
@@ -127,7 +127,7 @@ public class BoardDaoImpl implements BoardDao {
 
       stmt.setInt(1, no);
       return stmt.executeUpdate();
-    }catch (Exception e) {
+    } catch (Exception e) {
       throw new DaoException(e);
     }
   }
@@ -140,12 +140,10 @@ public class BoardDaoImpl implements BoardDao {
 
       stmt.setInt(1, no);
       return stmt.executeUpdate();
-    }catch (Exception e) {
+    } catch (Exception e) {
       throw new DaoException(e);
     }
   }
-
-
 }
 
 
