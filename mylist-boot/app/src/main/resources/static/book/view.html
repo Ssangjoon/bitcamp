@@ -2,20 +2,20 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>독서목록</title>
+  <title>독서록</title>
 </head>
 <body>
 
-<h1>수정</h1>
+<h1>독서록 상세</h1>
 
 <form>
 제목*: <input id="x-title" type="text"><br>
 저자*: <input id="x-author" type="text"><br>
-출판사*: <input id="x-press" type="text" readonly><br>
-페이지: <input id="x-page" type="number"><br>
-가격: <input id="x-price" type="text"><br>
-읽은 날짜: <input id="x-readDate" type="date"><br>
-소감: <input id="x-feed" type="text"><br>
+출판사*: <input id="x-press" type="text"><br>
+페이지: <input id="x-page" type="number" value="0"><br>
+가격: <input id="x-price" type="number" value="0"><br>
+독서일: <input id="x-readDate" type="date"><br>
+소감*: <textarea id="x-feed" cols="60" rows="10"></textarea><br>
 별표(*) 항목은 필수 입력입니다.<br>
 <button id="x-update-btn" type="button">변경</button>
 <button id="x-delete-btn" type="button">삭제</button>
@@ -38,13 +38,13 @@
 
   // 2) 쿼리 스트링에서 email 값을 추출한다.
   var params = new URLSearchParams(qs);
-  var press = params.get("press");
+  var index = params.get("index");
 
-  if (press == null) {
-    alert("이메일 값이 없습니다.");
+  if (index == null) {
+    alert("독서록 번호가 없습니다.");
     throw "파라미터 오류!";
   }
-  console.log(press);
+  console.log(index);
 
   var xTitle = document.querySelector("#x-title");
   var xAuthor = document.querySelector("#x-author");
@@ -55,44 +55,40 @@
   var xFeed = document.querySelector("#x-feed");
 
   // 3) 서버에서 데이터 가져오기
-  fetch(`/book/get?press=${press}`)
+  fetch(`/book/get?index=${index}`)
     .then(function(response) {
       return response.json();
     })
-    .then(function(contact) {
+    .then(function(book) {
       // 4) 연락처 상세 정보를 화면에 출력한다.
-      xTitle.value = contact.title;
-      xAuthor.value = contact.author;
-      xPress.value = contact.press;
-      xPage.value = contact.page;
-      xPrice.value = contact.price;
-      xReadDate.value = contact.readDate;
-      xFeed.value = contact.feed;
+      xTitle.value = book.title;
+      xAuthor.value = book.author;
+      xPress.value = book.press;
+      xPage.value = book.page;
+      xPrice.value = book.price;
+      xReadDate.value = book.readDate;
+      xFeed.value = book.feed;
     });
-    bookInfo = {
-      title : xTitle.value,
-      author : xAuthor.value,
-      press : xPress.value,
-      page : xPage.value,
-      price : xPrice.value,
-    readDate : xReadDate.value,
-    feed: xFeed.value
-    }
 
   document.querySelector("#x-update-btn").onclick = function() {
-    if (xTitle.value == "" || xAuthor.value == "") {
+    if (xTitle.value == "" || 
+        xAuthor.value == "" ||
+        xPress.value == "" ||
+        xFeed.value == "") {
       window.alert("필수 입력 항목이 비어 있습니다.");
       return;
     }
-
-    fetch('/book/add', {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-              },
-      method : 'POST',
-      body : JSON.stringify(bookInfo)
-    })
-    .then(function(response) {
+    
+    var qs = `index=${index}&title=${xTitle.value}&author=${xAuthor.value}&press=${xPress.value}`;
+    qs += `&page=${xPage.value}&price=${xPrice.value}&feed=${xFeed.value}`;
+    
+    // 독서일을 입력했을 때만 서버에 보낸다.
+    if (xReadDate.value != "") {
+      qs += `&readDate=${xReadDate.value}`;
+    }
+    
+    fetch(`/book/update?${qs}`)
+      .then(function(response) {
         return response.text();
       })
       .then(function(text) {
@@ -106,7 +102,7 @@
   };
 
   document.querySelector("#x-delete-btn").onclick = function() {
-    fetch(`/book/delete?press=${press}`)
+    fetch(`/book/delete?index=${index}`)
       .then(function(response) {
         return response.json();
       })
@@ -115,7 +111,7 @@
         location.href = "index.html";
       });
   };
-//`/book/add?title=${encodeURIComponent(xTitle.value)}&author=${encodeURIComponent(xAuthor.value)}&press=${encodeURIComponent(xPress.value)}&page=${encodeURIComponent(xPage.value)}&price=${encodeURIComponent(xPrice.value)}&readDate=${encodeURIComponent(xReadDate.value)}&feed=${encodeURIComponent(xFeed.value)}
+
 </script>
 
 </body>

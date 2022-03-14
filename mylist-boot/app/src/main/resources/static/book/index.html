@@ -2,21 +2,18 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>독서목록</title>
+  <title>독서록</title>
 </head>
 <body>
-<h1>독서목록</h1>
-<a href="form.html">새로 읽은 책</a>
-<table id="x-contact-table" border="1">
+<h1>독서록</h1>
+<a href="form.html">새 독서록</a>
+<table id="x-book-table" border="1">
 <thead>
   <tr>
-    <th>제목</th>
+    <th>책</th>
     <th>저자</th>
     <th>출판사</th>
     <th>페이지</th>
-    <th>가격</th>
-    <th>읽은 날짜</th>
-    <th>소감</th>
   </tr>
 </thead>
 <tbody>
@@ -24,29 +21,24 @@
 </table>
 
 <script type="text/javascript">
-  var tbody = document.querySelector("#x-contact-table tbody")
+  var tbody = document.querySelector("#x-book-table tbody")
 
   fetch("/book/list")
     .then(function(response) {
-      console.log(response);
       return response.json();
     })
-    .then(function(contacts) {
-      console.log(contacts);
-      for (var contact of contacts) {
+    .then(function(books) {
+      console.log(books);
+      for (var i = 0; i < books.length; i++) {
+        var book = books[i];
         var tr = document.createElement("tr");
-        tr.innerHTML = `<td><a href="view.html?press=${contact.press}">${contact.title}</a></td>
-        <td>${contact.author}</td>
-        <td>${contact.press}</td>
-        <td>${contact.page}</td>
-        <td>${contact.price}</td>
-        <td>${contact.readDate}</td>
-        <td>${contact.feed}</td>`;
+        tr.innerHTML = `<td><a href="view.html?index=${i}">${book.title}</a></td>
+        <td>${book.author}</td>
+        <td>${book.press}</td>
+        <td>${book.page}</td>`;
         tbody.appendChild(tr);
       }
     });
-   console.log(Date.valueOf(""));
-   console.log(Integer.valueOf(""));
 </script>
 
 

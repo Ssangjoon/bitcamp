@@ -2,63 +2,41 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>독서목록</title>
+  <title>연락처</title>
 </head>
 <body>
-<h1>새로 읽은 책</h1>
+
+<h1>새 연락처</h1>
 
 <form>
-  제목*: <input id="x-title" type="text"><br>
-  저자*: <input id="x-author" type="text"><br>
-  출판사*: <input id="x-press" type="text"><br>
-  페이지: <input id="x-page" type="number"><br>
-  가격: <input id="x-price" type="text"><br>
-  읽은 날짜: <input id="x-readDate" type="date"><br>
-  소감: <textarea id="x-feed" cols="60" rows="10" ></textarea><br>
+이름*: <input id="x-name" type="text"><br>
+이메일*: <input id="x-email" type="text"><br>
+전화*: <input id="x-tel" type="text"><br>
+회사: <input id="x-company" type="text"><br>
 별표(*) 항목은 필수 입력입니다.<br>
 <button id="x-add-btn" type="button">등록</button>
 <button id="x-cancel-btn" type="button">취소</button>
 </form>
 
 <script type="text/javascript">
-var xTitle = document.querySelector("#x-title");
-var xAuthor = document.querySelector("#x-author");
-var xPress = document.querySelector("#x-press");
-var xPage = document.querySelector("#x-page");
-var xPrice = document.querySelector("#x-price");
-var xReadDate = document.querySelector("#x-readDate");
-var xFeed = document.querySelector("#x-feed");
+  var xName = document.querySelector("#x-name");
+  var xEmail = document.querySelector("#x-email");
+  var xTel = document.querySelector("#x-tel");
+  var xCompany = document.querySelector("#x-company");
 
   document.querySelector("#x-add-btn").onclick = function() {
-    if (xTitle.value == "" || xAuthor.value == "" || xPress.value == "") {
+    if (xName.value == "" || xEmail.value == "" || xTel.value == "") {
       window.alert("필수 입력 항목이 비어 있습니다.");
       return;
     }
-    bookInfo = {
-      title : xTitle.value,
-      author : xAuthor.value,
-      press : xPress.value,
-      page : xPage.value,
-      price : xPrice.value,
-    readDate : xReadDate.value,
-    feed: xFeed.value
-    }
-    //console.log(${encodeURIComponent(xTitle.value)});
-    //xPrice.value.replace(null, 0)
-    fetch('/book/add', {
-      headers: {
-        'Content-Type': 'application/json;charset=utf-8',
-              },
-      method : 'POST',
-      body : JSON.stringify(bookInfo)
-    })
+
+    fetch(`/contact/add?name=${xName.value}&email=${xEmail.value}&tel=${xTel.value}&company=${xCompany.value}`)
       .then(function(response) {
-        console.log(response);
-        return response.json();
+        return response.text();
       })
       .then(function(text) {
         console.log(text);
-        //location.href = "index.html";
+        location.href = "index.html";
       });
   };
 
