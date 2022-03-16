@@ -2,35 +2,52 @@
 <html lang="en" dir="ltr">
 <head>
   <meta charset="utf-8">
-  <title>연락처</title>
+  <title>독서록</title>
 </head>
 <body>
 
-<h1>새 연락처</h1>
+<h1>새 독서록</h1>
 
 <form>
-이름*: <input id="x-name" type="text"><br>
-이메일*: <input id="x-email" type="text"><br>
-전화*: <input id="x-tel" type="text"><br>
-회사: <input id="x-company" type="text"><br>
+제목*: <input id="x-title" type="text"><br>
+저자*: <input id="x-author" type="text"><br>
+출판사*: <input id="x-press" type="text"><br>
+페이지: <input id="x-page" type="number" value="0"><br>
+가격: <input id="x-price" type="number" value="0"><br>
+독서일: <input id="x-readDate" type="date"><br>
+소감*: <textarea id="x-feed" cols="60" rows="10"></textarea><br>
 별표(*) 항목은 필수 입력입니다.<br>
 <button id="x-add-btn" type="button">등록</button>
 <button id="x-cancel-btn" type="button">취소</button>
 </form>
 
 <script type="text/javascript">
-  var xName = document.querySelector("#x-name");
-  var xEmail = document.querySelector("#x-email");
-  var xTel = document.querySelector("#x-tel");
-  var xCompany = document.querySelector("#x-company");
+  var xTitle = document.querySelector("#x-title");
+  var xAuthor = document.querySelector("#x-author");
+  var xPress = document.querySelector("#x-press");
+  var xPage = document.querySelector("#x-page");
+  var xPrice = document.querySelector("#x-price");
+  var xReadDate = document.querySelector("#x-readDate");
+  var xFeed = document.querySelector("#x-feed");
 
   document.querySelector("#x-add-btn").onclick = function() {
-    if (xName.value == "" || xEmail.value == "" || xTel.value == "") {
+    if (xTitle.value == "" || 
+        xAuthor.value == "" ||
+        xPress.value == "" ||
+        xFeed.value == "") {
       window.alert("필수 입력 항목이 비어 있습니다.");
       return;
     }
 
-    fetch(`/contact/add?name=${xName.value}&email=${xEmail.value}&tel=${xTel.value}&company=${xCompany.value}`)
+    var qs = `title=${xTitle.value}&author=${xAuthor.value}&press=${xPress.value}`;
+    qs += `&page=${xPage.value}&price=${xPrice.value}&feed=${xFeed.value}`;
+    
+    // 독서일을 입력했을 때만 서버에 보낸다.
+    if (xReadDate.value != "") {
+      qs += `&readDate=${xReadDate.value}`;
+    }
+    
+    fetch(`/book/add?${qs}`)
       .then(function(response) {
         return response.text();
       })
