@@ -83,10 +83,20 @@ insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
   values(5, 3, 3, '010-1111-3333');    
 ```
 
-### 3단계 - 연락처 데이터를 다룰 DAO를 준비한다.
+### 3단계 - 연락처 테이블 변경에 맞춰 도메인 클래스를 변경한다.
 
-- com.eomcs.mylist.dao.ContactDao 인터페이스를 변경한다.
+- com.eomcs.mylist.domain.ContactTel 클래스 추가
+- com.eomcs.mylist.domain.Contact 클래스 변경
+  - tel 필드 제거
+  - ContactTel 컬렉션 필드 추가
+
+### 4단계 - 연락처 테이블 변경에 맞춰 DAO 클래스를 변경한다.
+
+- com.eomcs.mylist.dao.ContactDao 인터페이스 변경
   - 연락처의 전화번호를 다루는 메서드 추가
+- /src/main/resources/com/eomcs/mylist/dao/ContactDao.xml 파일 변경
+  - ContactDao에 추가한 메서드에 맞춰 SQL 문을 추가 및 변경한다.
+
 
 ## 프론트엔드 개발 실습
 
