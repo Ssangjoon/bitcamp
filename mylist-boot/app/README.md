@@ -101,7 +101,7 @@ insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
 
 - com.eomcs.mylist.controller.ContactController 클래스 변경
   - add() 메서드 변경
-  -
+  - list() 메서드 변경
 
 ## 프론트엔드 개발 실습
 
@@ -109,6 +109,9 @@ insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
 
 - /static/contact/form.html 변경
 
+### 2단계 - 연락처 목록 화면을 처리한다.
+
+- /static/contact/index.html 변경
 
 
 
