@@ -7,8 +7,9 @@
 ### 1단계 - 연락처에 여러 개의 전화번호를 입력할 수 있도록 자식 테이블을 추가한다.
 
 ```
-drop table ml_contact;
 drop table ml_tel_type;
+drop table ml_contact;
+drop table ml_cont_tel;
 
 -- 연락처
 create table ml_contact(
