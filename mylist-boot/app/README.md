@@ -1,6 +1,6 @@
-# 13.1 서비스 객체 도입 : Mybatis의 트랜잭션 제어
+# 13.1 서비스 객체 도입 : 데이터를 쪼개 부모 테이블과 자식테이블에 분산 저장하기
 
-- mybatis 에서 트랜잭션 제어하는 방법
+- 데이터를 여러 테이블에 분산 저장하는 방법
 
 ## 백엔드 개발 실습
 
@@ -102,6 +102,9 @@ insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
 - com.eomcs.mylist.controller.ContactController 클래스 변경
   - add() 메서드 변경
   - list() 메서드 변경
+  - get() 메서드 변경
+  - update() 메서드 변경
+  - delete() 메서드 변경
 
 ## 프론트엔드 개발 실습
 
@@ -113,6 +116,9 @@ insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
 
 - /static/contact/index.html 변경
 
+### 3단계 - 연락처 상세보기 화면을 처리한다.
+
+- /static/contact/view.html 변경
 
 
 
