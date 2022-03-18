@@ -1,10 +1,9 @@
 package com.eomcs.mylist.domain;
 
-public class Todo implements java.io.Serializable {
+public class Todo {
   int no;
   String title;
   boolean done;
-
 
   @Override
   public String toString() {
@@ -28,5 +27,7 @@ public class Todo implements java.io.Serializable {
   public void setDone(boolean done) {
     this.done = done;
   }
+
+
 
 }

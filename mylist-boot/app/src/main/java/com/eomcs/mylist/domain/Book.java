@@ -7,17 +7,16 @@ public class Book {
   String title;
   String author;
   String press;
+  String feed;
+  Date readDate;
   int page;
   int price;
-  Date readDate;
-  String feed;
 
   @Override
   public String toString() {
     return "Book [no=" + no + ", title=" + title + ", author=" + author + ", press=" + press
         + ", page=" + page + ", price=" + price + ", readDate=" + readDate + ", feed=" + feed + "]";
   }
-
   public int getNo() {
     return no;
   }
@@ -66,5 +65,6 @@ public class Book {
   public void setFeed(String feed) {
     this.feed = feed;
   }
+
 
 }
