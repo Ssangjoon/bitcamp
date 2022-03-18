@@ -97,37 +97,17 @@ insert into ml_cont_tel(ct_no, contact_no, tt_no, tel)
 - /src/main/resources/com/eomcs/mylist/dao/ContactDao.xml 파일 변경
   - ContactDao에 추가한 메서드에 맞춰 SQL 문을 추가 및 변경한다.
 
+### 5단계 - 연락처 테이블 변경에 맞춰 페이지 컨트롤러 클래스를 변경한다.
+
+- com.eomcs.mylist.controller.ContactController 클래스 변경
+  - add() 메서드 변경
+  -
 
 ## 프론트엔드 개발 실습
 
-### 1단계 - 미니 jQuery 라이브러리를 만든다.
+### 1단계 - 연락처 입력 화면을 처리한다.
 
-- /src/main/resources/static/myQuery.js 생성
-  - jQuery를 모방하여 일부 함수를 만든다.
-- /src/main/resources/static/todo/index.html 변경
-  - myQuery 라이브러리를 HTML 에 적용한다.
-
-### 2단계 - 미니 jQuery 라이브러리를 압축한다.
-
-- /src/main/resource/static/myQuery.min.js 생성
-  - javascript 또는 CSS 파일을 압축하는 사이트의 도움을 받는다.
-- /src/main/resources/static/todo/index.html 변경
-  - myQuery 라이브러리를 HTML 에 적용한다.
-
-### 3단계 - 진짜 jQuery 라이브러리를 적용한다.
-
-- /src/main/resources/static/todo/index.html 변경
-  - myQuery 라이브러리 대신 CDN 방식으로 진짜 jQuery 라이브러리를 적용한다.
-
-### 4단계 - NPM을 이용하여 라이브러리를 자동으로 다운받는다.
-
-- /src/main/resources/static/ 폴더에 jQuery 라이브러리를 다운로드 한다.
-  - `npm init` 실행하여 package.json 설정 파일을 준비한다.
-  - `npm install jquery` 실행하여 jQuery 라이브러리를 설치한다.
-  - `npm install sweetalert2` 실행하여 SweetAlert2 라이브러리를 설치한다.
-- /src/main/resources/static/todo/index.html 변경
-  - CDN 라이브러리 대신 npm으로 다운로드 받은 라이브러리를 사용한다.
-
+- /static/contact/form.html 변경
 
 
 
