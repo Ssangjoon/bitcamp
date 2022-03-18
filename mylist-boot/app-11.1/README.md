@@ -48,7 +48,7 @@
 - BoardDao.xml 파일을 src/main/resources 폴더로 옮긴다.
 
 
-### 6단계 - BoardDao에 Mybatis를 적용한다.
+### 6단계 - BookDao에 Mybatis를 적용한다.
 
 - Book 데이터를 저장할 테이블을 생성한다.
 ```
