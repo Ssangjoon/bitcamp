@@ -1,17 +1,18 @@
-package com.eomcs.mylist.service;
+package com.eomcs.mylist.service.impl;
 
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 import com.eomcs.mylist.dao.ContactDao;
 import com.eomcs.mylist.domain.Contact;
 import com.eomcs.mylist.domain.ContactTel;
+import com.eomcs.mylist.service.ContactService;
 
-@Service
-public class ContactServiceNonTransaction {
+//@Service
+public class NonTransactionContactService implements ContactService {
   @Autowired
   ContactDao contactDao;
 
+  @Override
   public int add(Contact contact) {
     contactDao.insert(contact);
     for (ContactTel tel : contact.getTels()) {
@@ -21,6 +22,7 @@ public class ContactServiceNonTransaction {
     return 1;
   }
 
+  @Override
   public List<Contact> list() {
     List<Contact> contacts = contactDao.findAll();
     for (Contact contact : contacts) {
@@ -29,6 +31,7 @@ public class ContactServiceNonTransaction {
     return contacts;
   }
 
+  @Override
   public Contact get(int no) {
     Contact contact = contactDao.findByNo(no);
     if (contact != null) {
@@ -37,6 +40,7 @@ public class ContactServiceNonTransaction {
     return contact;
   }
 
+  @Override
   public int update(Contact contact) {
     int count = contactDao.update(contact);
     if (count > 0) {
@@ -48,6 +52,7 @@ public class ContactServiceNonTransaction {
     return count;
   }
 
+  @Override
   public int delete(int no) {
     contactDao.deleteTelByContactNo(no);
     return contactDao.delete(no);

@@ -25,17 +25,39 @@
 ### 3단계 - 트랜잭션을 적용한다.
 
 - com.eomcs.mylist.controller.ContactController 클래스 변경
-  - add() 메서드에 트랜잭션 적용
+  - add()/update()/delete() 메서드에 트랜잭션 적용
+
+### 4단계 - 업무로직과 트랜잭션 제어 코드를 캡슐화 한다.
+
+- com.eomcs.mylist.service.ContactServiceNonTransaction 클래스 생성
+  - 트랜잭션 적용 전
+- com.eomcs.mylist.service.ContactServiceTransaction 클래스 생성
+  - 트랜잭션 적용 후 : TransactionTemplate 클래스 사용
+- com.eomcs.mylist.service.ContactServiceTransaction2 클래스 생성
+  - 트랜잭션 적용 후 : TransactionManager 클래스를 직접 사용
+- com.eomcs.mylist.service.ContactServiceTransaction3 클래스 생성
+  - 트랜잭션 적용 후 : @Transactional 애노테이션 사용
+- com.eomcs.mylist.controller.ContactController 클래스 변경
+  - add()/update()/delete() 메서드에 트랜잭션 적용
+
+### 5단계 - 인터페이스를 이용하여 특정 클래스 종속에서 탈피한다.
+
+- com.eomcs.mylist.service.ContactService 인터페이스 정의
+- com.eomcs.mylist.service.ContactServiceNonTransaction 클래스 변경
+  - ...service.impl.NonTransactionContactService  패키지 이동 및 클래스명 변경
+- com.eomcs.mylist.service.ContactServiceTransaction 클래스 변경
+  - ...service.impl.TransactionTemplateContactService  패키지 이동 및 클래스명 변경
+- com.eomcs.mylist.service.ContactServiceTransaction2 클래스 변경
+  - ...service.impl.TransactionManagerContactService  패키지 이동 및 클래스명 변경
+- com.eomcs.mylist.service.ContactServiceTransaction3 클래스 변경
+  - ...service.impl.DefaultContactService  패키지 이동 및 클래스명 변경
+
+### 6단계 - 게시글, 독서록, To-do 에도 서비스 객체를 적용한다.
+
+
 
 ## 프론트엔드 개발 실습
 
-### 1단계 - 연락처 입력 화면을 변경
-
-- /static/contact/form.html 변경
-
-### 2단계 - 연락처 상세보기 화면을 변경
-
-- /static/contact/form.html 변경
 
 
 
