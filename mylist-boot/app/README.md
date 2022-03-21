@@ -51,9 +51,20 @@
   - ...service.impl.TransactionManagerContactService  패키지 이동 및 클래스명 변경
 - com.eomcs.mylist.service.ContactServiceTransaction3 클래스 변경
   - ...service.impl.DefaultContactService  패키지 이동 및 클래스명 변경
+- com.eomcs.mylist.controller.ContactController 클래스 변경
+  - 패키지 변경 및 인터페이스 정의에 맞춰 코드 변경
 
 ### 6단계 - 게시글, 독서록, To-do 에도 서비스 객체를 적용한다.
 
+- com.eomcs.mylist.service.BoardService 인터페이스 정의
+  - com.eomcs.mylist.service.impl.DefaultBoardService 클래스 생성
+  - com.eomcs.mylist.controller.BoardController 클래스 변경
+- com.eomcs.mylist.service.BookService 인터페이스 정의
+  - com.eomcs.mylist.service.impl.DefaultBookService 클래스 생성
+  - com.eomcs.mylist.controller.BookController 클래스 변경
+- com.eomcs.mylist.service.TodoService 인터페이스 정의
+  - com.eomcs.mylist.service.impl.DefaultTodoService 클래스 생성
+  - com.eomcs.mylist.controller.TodoController 클래스 변경
 
 
 ## 프론트엔드 개발 실습
