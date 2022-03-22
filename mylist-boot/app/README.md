@@ -14,6 +14,15 @@
 - com.eomcs.mylist.service.impl.DefaultContactService 클래스 변경
   - list(), get() 메서드 변경
 
+### 2단계 - 동적 SQL 문을 생성한다.
+
+- /src/main/resources/com/eomcs/mylist/dao/ContactDao.xml 변경
+  - `insertTels` insert 문 추가
+- com.eomcs.mylist.dao.ContactDao 인터페이스 변경
+  - `insertTels()` 메서드 추가
+- com.eomcs.mylist.service.impl.DefaultContactService 클래스 변경
+  - add(), update() 메서드 변경
+
 ## 프론트엔드 개발 실습
 
 

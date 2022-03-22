@@ -133,6 +133,14 @@
     values(#{contactNo}, #{telTypeNo}, #{tel}) 
   </insert>
   
+  <insert id="insertTels">
+    insert into ml_cont_tel(contact_no, tt_no, tel)
+    values
+    <foreach collection="tels" item="contactTel" separator=",">
+      (#{contactNo}, #{contactTel.telTypeNo}, #{contactTel.tel}) 
+    </foreach>
+  </insert>
+  
   <update id="updateTel" parameterType="contactTel">
     update ml_cont_tel set
       tt_no=#{telTypeNo},
