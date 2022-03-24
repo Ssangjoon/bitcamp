@@ -730,13 +730,19 @@ https://meet.google.com/cyz-mbfk-qaa
 
 ## 92일차(2022-03-23,수)
 
-- HTTP 프로토콜
-- MyList 프로젝트 실습
-  - 14.1 자바스크립트 템플릿 엔진 도입 : Handlebars 템플릿 엔진 적용
-  - 15.1 Mybatis 고급 기능 활용 : 테이블 조인과 동적 SQL 다루기
+- HTTP 프로토콜(eomcs-java/eomcs-web/html/form/)
+  - HTTP 요청/응답 프로토콜
+  - GET/POST 요청 및 처리 방법
 - 파이널 프로젝트
-  - 팀프로젝트 시범 백엔드 및 프론트엔드 개발
+  - 팀프로젝트 백엔드 및 프론트엔드 개발
 
+## 93일차(2022-03-24,목)
+
+- HTTP 프로토콜(eomcs-java/eomcs-web/html/form/)
+  - form 태그를 이용한 파일 업로드
+  - AJAX를 통한 파일 업로드
+- 파이널 프로젝트
+  - 팀프로젝트 백엔드 및 프론트엔드 개발
 
 
 ## 프로젝트 절차
