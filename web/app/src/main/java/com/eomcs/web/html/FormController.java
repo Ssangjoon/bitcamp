@@ -34,7 +34,8 @@ public class FormController {
     System.out.println(name);
     System.out.println(age);
     System.out.println(photo.getOriginalFilename());
-
+    // 톰캣서버에 배치한 웹 어플리케이션의 실제 폴더 경로 알아내기
+    //    System.out.println(sc.getRealPath("/temp/" + photo.getOriginalFilename()));
     try {
       File photoFile = new File("c:/upload/" + photo.getOriginalFilename());
       photo.transferTo(photoFile);
