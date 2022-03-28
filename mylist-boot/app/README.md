@@ -27,7 +27,14 @@ alter table ml_book
 - com.eomcs.mylist.controller.BookController 클래스 변경
   - `add()`, `update()` 메서드에 파일업로드 기능 추가
 
+
+
 ## 프론트엔드 개발 실습
 
+### 1단계 - 입력 화면에 사진 항목을 추가한다.
+
+- /static/book/form.html 변경
+  - 사진 파일을 업로드할 input 태그 추가
+  - POST 요청으로 책 정보 및 사진 파일을 업로드 한다.
 
 #
