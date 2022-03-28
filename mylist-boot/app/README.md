@@ -26,8 +26,8 @@ alter table ml_book
 
 - com.eomcs.mylist.controller.BookController 클래스 변경
   - `add()`, `update()` 메서드에 파일업로드 기능 추가
-
-
+  - `photo()` 메서드 추가
+    - URL 경로에서 지정한 파일을 찾아 클라이언트에게 전송한다.
 
 ## 프론트엔드 개발 실습
 
@@ -36,5 +36,7 @@ alter table ml_book
 - /static/book/form.html 변경
   - 사진 파일을 업로드할 input 태그 추가
   - POST 요청으로 책 정보 및 사진 파일을 업로드 한다.
+- /static/book/index.html 변경
+  - 목록에 책 사진을 추가
 
 #
