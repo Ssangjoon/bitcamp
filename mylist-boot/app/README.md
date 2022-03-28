@@ -38,7 +38,10 @@ alter table ml_book
     - 이클립스 IDE에서 프로젝트 리프래시
     - 업로드 파일을 저장한 후 해당 파일의 썸네일 이미지 파일을 생성한다.
 
+### 6단계 - 사진 데이터를 변경하지 않으면 업데이트 항목에서 제외한다.
 
+- /src/main/resources/com/eomcs/mylist/dao/BookDao.xml 변경
+  - `update` SQL 문에 동적 SQL 기능 추가
 
 ## 프론트엔드 개발 실습
 
@@ -49,5 +52,8 @@ alter table ml_book
   - POST 요청으로 책 정보 및 사진 파일을 업로드 한다.
 - /static/book/index.html 변경
   - 목록에 책 썸네일 사진을 추가
+- /static/book/view.html 변경
+  - 상세 화면에 책 사진 출력
+  - 책 사진 변경 기능 추가
 
 #
