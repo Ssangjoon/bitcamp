@@ -748,6 +748,7 @@ https://meet.google.com/cyz-mbfk-qaa
 
 - MyList 프로젝트 실습
   - 16.1 파일 업로드 : 자바스크립트 빌트인 객체 사용하기
+  - 17.1 Lombok 적용 
 - 파이널 프로젝트
   - 팀프로젝트 백엔드 및 프론트엔드 개발
 
