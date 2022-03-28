@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import com.eomcs.mylist.domain.Book;
 import com.eomcs.mylist.service.BookService;
+import net.coobird.thumbnailator.Thumbnails;
 
 @RestController 
 public class BookController {
@@ -77,7 +78,7 @@ public class BookController {
       header.add("Pragma", "no-cache");
       header.add("Expires", "0");
 
-      // 만약 다운로드 받는 쪽에서 사용할 파일명을 지정하고 싶다면 다음의 응답 헤더를 추가하라!
+      // 다운로드 파일명을 지정하고 싶다면 다음의 응답 헤더를 추가하라!
       // => 다운로드 파일을 지정하지 않으면 요청 URL이 파일명으로 사용된다.
       header.add(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=" + filename);
 
@@ -94,11 +95,11 @@ public class BookController {
       //      
       //      return 응답데이터; // 포장한 응답 데이터를 클라이언트로 리턴한다.
 
-      return ResponseEntity.ok()
-          .headers(header)
-          .contentLength(downloadFile.length())
-          .contentType(MediaType.APPLICATION_OCTET_STREAM)
-          .body(resource);
+      return ResponseEntity.ok() // HTTP 응답 프로토콜에 따라 응답을 수행할 생성기를 준비한다.
+          .headers(header) // 응답 헤더를 설정한다.
+          .contentLength(downloadFile.length()) // 응답할 파일의 크기를 설정한다.
+          .contentType(MediaType.APPLICATION_OCTET_STREAM) // 응답 콘텐트의 MIME 타입을 설정한다.
+          .body(resource); // 응답 콘텐트를 생성한 후 리턴한다.
 
     } catch (Exception e) {
       e.printStackTrace();
@@ -121,6 +122,12 @@ public class BookController {
       // 파일을 지정된 폴더에 저장한다.
       File photoFile = new File("./upload/book/" + filename); // App 클래스를 실행하는 프로젝트 폴더
       file.transferTo(photoFile.getCanonicalFile()); // 프로젝트 폴더의 전체 경로를 전달한다.
+
+      // 썸네일 이미지 파일 생성
+      Thumbnails.of(photoFile)
+      .size(50, 50)
+      .outputFormat("jpg")
+      .toFile(new File("./upload/book/" + "50x50_" + filename));
 
       return filename;
 
