@@ -754,6 +754,9 @@ https://meet.google.com/cyz-mbfk-qaa
 
 ## 95일차(2022-03-29,화)
 
+- 세션 및 쿠키 활용(eomcs-web)
+  - com.eomcs.web.Controller1/2/3
+  
 - MyList 프로젝트 실습
   - 18.1 세션과 쿠키의 활용 : 로그인/로그아웃 처리하기
 - 파이널 프로젝트
