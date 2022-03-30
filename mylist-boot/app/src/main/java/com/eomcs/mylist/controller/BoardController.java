@@ -28,7 +28,7 @@ public class BoardController {
       return new ResultMap().setStatus(FAIL).setData("로그인 하지 않았습니다.");
     }
 
-    board.setWriter(member.getNo());
+    board.setWriter(member);
     boardService.add(board);
     return new ResultMap().setStatus(SUCCESS);
   }
@@ -50,7 +50,7 @@ public class BoardController {
       return new ResultMap().setStatus(FAIL).setData("로그인 하지 않았습니다.");
     }
 
-    board.setWriter(member.getNo());
+    board.setWriter(member);
     int count = boardService.update(board);
 
     if (count == 1) {
@@ -69,7 +69,7 @@ public class BoardController {
 
     Board board = new Board();
     board.setNo(no);
-    board.setWriter(member.getNo());
+    board.setWriter(member);
 
     int count = boardService.delete(board);
 
