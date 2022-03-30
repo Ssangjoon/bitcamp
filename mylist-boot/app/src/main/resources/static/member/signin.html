@@ -36,8 +36,11 @@ document.querySelector("form[name=form1]").onsubmit = function() {
       return response.text();
     })
     .then(function(text) {
-      console.log(text);
-      window.alert("로그인 성공!");
+      if (text == "success") {
+    	  location.href = "../index.html";
+      } else {
+    	  window.alert("로그인 실패!")
+      }
     });
   return false;
 };
