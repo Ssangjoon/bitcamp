@@ -55,7 +55,7 @@ public class MemberController {
   @RequestMapping("/member/signout")
   public Object signout(HttpSession session) {
     session.invalidate();
-    return new ResultMap().setStatus("success");
+    return new ResultMap().setStatus(SUCCESS);
   }
 }
 
