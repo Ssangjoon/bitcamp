@@ -51,6 +51,12 @@ public class MemberController {
           .setData("로그인 하지 않았습니다.");
     }
   }
+
+  @RequestMapping("/member/signout")
+  public Object signout(HttpSession session) {
+    session.invalidate();
+    return new ResultMap().setStatus("success");
+  }
 }
 
 

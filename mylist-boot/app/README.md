@@ -66,6 +66,11 @@ alter table ml_member
 - com.eomcs.mylist.controller.MemberController 클래스 변경
   - `getLoginUser()` 메서드 추가
 
+### 9단계 - 로그아웃 기능을 추가한다.
+
+- com.eomcs.mylist.controller.MemberController 클래스 변경
+  - `signout()` 메서드 추가
+
 ## 프론트엔드 개발 실습
 
 ### 1단계 - 회원 가입 화면을 만든다.
