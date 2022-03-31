@@ -57,6 +57,11 @@ public class MemberController {
     session.invalidate();
     return new ResultMap().setStatus(SUCCESS);
   }
+
+  @RequestMapping("/member/facebookLogin")
+  public Object facebookLogin(String accessToken, HttpSession session) {
+    return new ResultMap().setStatus(SUCCESS);
+  }
 }
 
 
