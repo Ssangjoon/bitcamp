@@ -8,8 +8,14 @@
 
 - com.eomcs.mylist.controller.MemberController 클래스 변경
   - `facebookLogin()` 메서드 추가
-
-
+- com.eomcs.mylist.service.MemberService 인터페이스 변경
+  - `get(String email)` 메서드 추가
+- com.eomcs.mylist.service.impl.DefaultMemberService 클래스 변경
+  - `get(String email)` 메서드 구현  
+- com.eomcs.mylist.dao.MemberDao 인터페이스 변경
+  - `findByEmail(String email)` 메서드 추가
+- `/src/main/resources/com/eomcs/mylist/dao/MemberDao.xml` 파일 변경
+  - `findByEmail` SQL 문 추가
 
 ## 프론트엔드 개발 실습
 
