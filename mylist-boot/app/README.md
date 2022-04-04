@@ -17,5 +17,7 @@
 - static/board/form.html 변경
 - static/board/view.html 변경
 
+### 3단계 - 나머지 페이지에도 템플릿을 적용한다.
+
 
 #
