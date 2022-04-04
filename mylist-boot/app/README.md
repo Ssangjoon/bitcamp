@@ -8,12 +8,20 @@ create table ml_member(
   password varchar(50) not null,
   regist_date datetime default now()
   );
-  
-  alter table ml_member 
+
+  alter table ml_member
   add constraint primary key (no)
   modify column no int not null auto_increment;
 ```
+```
 
-###2단계 회원 데이터를 다룰 DAO 인터페이스를 정의한다. 
+delete from ml_board;
 
-  
+
+alter table ml_board
+  add column writer int not null,
+  add constraint ml_board_fk foreign key (writer) references ml_member(no);
+
+```
+
+###2단계 회원 데이터를 다룰 DAO 인터페이스를 정의한다.
