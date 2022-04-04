@@ -3,45 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>MyList!</title>
-  <style>
-  #header {
-    position: relative;
-    background-color: navy;
-    color: white;
-    height: 50px;
-    display: flex;
-    align-items: center;
-    padding: 0px 10px;
-  }
-  
-  #footer { 
-    font-size: 0.8em; 
-    background-color: gray;
-    height: 20px;
-    padding: 10px;
-  }
-  
-  #sidebar {
-    position: absolute;
-    left: 0px;
-    top: 50px; 
-    background-color: yellow;
-    width: 130px;
-    min-height: 200px;
-    
-  }
-  
-  #content {
-    margin-left: 130px;
-    padding: 0px 10px;
-  }
-  
-  .container {
-    position: relative;
-    width: 600px;
-    margin: 0px auto; 
-  }
-  </style>
+  <link href="/css/common.css" rel="stylesheet">
 </head>
 <body>
 
@@ -71,6 +33,7 @@
 <script>
 $("#header").load("header.html");
 $("#footer").load("footer.html");
+$("#sidebar").load("sidebar.html");
 
 /*
 fetch("/header.html").then(function(response) {

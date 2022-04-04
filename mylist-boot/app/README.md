@@ -19,6 +19,19 @@
 - static/index.html 변경
   - footer.html 을 삽입
 
+### 3단계 - 사이드바를 추가한다.
+
+- static/.html 생성
+- static/index.html 변경
+  - sidebar.html 을 삽입
+
+### 4단계 - 공통 스타일을 별도의 파일로 분리한다.
+
+- static/css/common.css 생성
+  - 헤더, 풋터, 사이드바를 제어하는 css 코드를 이 파일로 옮긴다.
+- static/index.html 변경
+  - common.css 적용
+
 
 ### 2단계 - 게시글 페이지에
 
