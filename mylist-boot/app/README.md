@@ -10,6 +10,17 @@
 ### 1단계 - 헤더를 분리한다.
 
 - static/header.html 생성
+- static/index.html 변경
+  - header.html 을 삽입
+
+### 2단계 - 풋터를 추가한다.
+
+- static/footer.html 생성
+- static/index.html 변경
+  - footer.html 을 삽입
+
+
+### 2단계 - 게시글 페이지에
 
 
 
