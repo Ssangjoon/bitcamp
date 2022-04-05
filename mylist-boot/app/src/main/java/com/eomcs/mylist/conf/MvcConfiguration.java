@@ -3,6 +3,7 @@ package com.eomcs.mylist.conf;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import com.eomcs.mylist.interceptor.AuthInterceptor;
 
 //@Configuration 애노테이션의 용도
 //=> 다음 클래스는 설정에 관련된 일을 하는 클래스임을 선언한다.
@@ -20,8 +21,8 @@ public class MvcConfiguration implements WebMvcConfigurer {
     System.out.println("MvcConfiguration.addInterceptors() 호출됨!");
     // 이 메서드가 정의되어 있다면, 
     // 스프링부트는 이 메서드를 호출하여 추가할 인터셉터의 정보를 InterceptorRegistry로 받는다.
-    //    registry.addInterceptor(new AuthInterceptor())
-    //    .addPathPatterns("/**/add*", "/**/update*", "/**/delete*");
+    registry.addInterceptor(new AuthInterceptor())
+    .addPathPatterns("/**/add*", "/**/update*", "/**/delete*");
   }
 }
 
