@@ -4,7 +4,11 @@ import static com.eomcs.mylist.controller.ResultMap.FAIL;
 import static com.eomcs.mylist.controller.ResultMap.SUCCESS;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.PrintWriter;
+import java.io.StringWriter;
 import java.util.UUID;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.Resource;
@@ -22,6 +26,8 @@ import net.coobird.thumbnailator.geometry.Positions;
 @RestController 
 public class BookController {
 
+  private static final Logger log = LogManager.getLogger(BookController.class);
+
   @Autowired
   BookService bookService;
 
@@ -38,7 +44,10 @@ public class BookController {
       return new ResultMap().setStatus(SUCCESS);
 
     } catch (Exception e) {
-      e.printStackTrace();
+      StringWriter out = new StringWriter();
+      e.printStackTrace(new PrintWriter(out));
+      log.error(out.toString());
+
       return new ResultMap().setStatus(FAIL);
     }
   }
@@ -120,8 +129,7 @@ public class BookController {
           .body(resource); // 응답 콘텐트를 생성한 후 리턴한다.
 
     } catch (Exception e) {
-      //e.printStackTrace();
-      System.out.println("요청한 파일이 없습니다!");
+
       return null;
     }
   }
