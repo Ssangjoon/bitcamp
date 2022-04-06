@@ -1,14 +1,15 @@
-### 21.1 Log4j 적용하기
+### 21.2 로그 출력 : 스프링부트의 기본 로그 사용하기
 
-- Log4j 기능을 활성하시키기
+- 스프링부트에 기본으로 설정된 로그를 사용하여 출력하기
 
 ## 백엔드 개발 실습
 
-### 1단계 - 스프링부트의 기본 로그 라이브러리를 제거한다.
+### 1단계 - Log4j2 라이브러리 설정을 제거한다.
 
 - build.gradle 변경
 
 ```
+// 다음 설정을 제거한다.
 configurations {
     all {
         exclude group: 'org.springframework.boot', module: 'spring-boot-starter-logging'
@@ -16,26 +17,22 @@ configurations {
 }
 ```
 
-### 2단계 - log4j2 스프링부트 라이브러리를 추가한다.
-
-- build.gradle 변경
-
 ```
-dependencies {
-  implementation 'org.springframework.boot:spring-boot-starter-log4j2'
-  ...
-}
+// 다음 라이브러리를 제거한다.
+implementation 'org.springframework.boot:spring-boot-starter-log4j2'
 ```
 
-### 3단계 - log4j2 설정 파일을 생성한다.
-
-- /src/main/resources/log4j2.xml 파일 생성
-
-### 4단계 - 스프링부트 설정 파일에 log4j2 설정 파일의 경로를 지정한다.
+### 2단계 - 로깅 레벨을 설정한다.
 
 - /src/main/resources/application.properties 변경
 
-### 5단계 - 로그 객체를 사용하여 로그를 출력한다.
+다음 설정을 추가한다.
+```
+logging.level.root=info
+logging.level.com.eomcs.mylist=debug
+```
+
+### 3단계 - 로그 객체를 사용하여 로그를 출력한다.
 
 - 로그를 출력할 클래스에 적용
 
