@@ -35,6 +35,9 @@ dependencies {
 
 - /src/main/resources/application.properties 변경
 
+### 5단계 - 로그 객체를 사용하여 로그를 출력한다.
+
+- 로그를 출력할 클래스에 적용
 
 
 ## 프론트엔드 개발 실습
