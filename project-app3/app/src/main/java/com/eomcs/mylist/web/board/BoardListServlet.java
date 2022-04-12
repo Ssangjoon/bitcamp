@@ -29,12 +29,7 @@ public class BoardListServlet extends HttpServlet {
   protected void doGet(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
-    List<Board> boards = boardService.list();
-    for (Board board : boards) {
-      System.out.println(board.getTitle());
-    }
-
-    resp.setContentType("text/plain;charset=UTF-8");
+    resp.setContentType("text/html;charset=UTF-8");
     PrintWriter out = resp.getWriter();
 
     out.println("<!DOCTYPE html>");
@@ -111,6 +106,18 @@ public class BoardListServlet extends HttpServlet {
     out.println("  </tr>");
     out.println("</thead>");
     out.println("<tbody>");
+
+    List<Board> boards = boardService.list();
+    for (Board board : boards) {
+      out.println("  <tr>");
+      out.printf("    <td>%d</td>\n", board.getNo());
+      out.printf("    <td>%s</td>\n", board.getTitle());
+      out.printf("    <td>%s</td>\n", board.getWriter().getName());
+      out.printf("    <td>%d</td>\n", board.getViewCount());
+      out.printf("    <td>%s</td>\n", board.getCreatedDate());
+      out.println("  </tr>");
+    }
+
     out.println("</tbody>");
     out.println("</table>");
     out.println("</div>");
