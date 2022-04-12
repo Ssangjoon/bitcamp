@@ -13,7 +13,7 @@ import javax.servlet.http.HttpServletResponse;
 public class BoardUpdateServlet extends HttpServlet {
 
   @Override
-  protected void doGet(HttpServletRequest req, HttpServletResponse resp)
+  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
       throws ServletException, IOException {
 
     resp.setContentType("text/plain;charset=UTF-8");
