@@ -9,12 +9,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.eomcs.mylist.domain.Board;
-import com.eomcs.mylist.domain.Member;
 import com.eomcs.mylist.service.BoardService;
 
 @SuppressWarnings("serial")
-@WebServlet("/board/add") 
-public class BoardAddServlet extends HttpServlet {
+@WebServlet("/board/detail") 
+public class BoardDetailServlet extends HttpServlet {
 
   BoardService boardService;
 
@@ -93,13 +92,21 @@ public class BoardAddServlet extends HttpServlet {
     out.println("</div>");
 
     out.println("<div id=\"content\">");
-    out.println("<h1>게시글 등록</h1>");
+    out.println("<h1>게시글 상세</h1>");
 
-    out.println("<form method='post'>");
-    out.println("제목*: <input name=\"title\" type=\"text\"><br>");
-    out.println("내용*: <textarea name=\"content\" cols=\"50\" rows=\"10\"></textarea><br>");
+    int no = Integer.parseInt(req.getParameter("no"));
+    Board board = boardService.get(no);
+
+    out.println("<form action='update' method='post'>");
+    out.printf("번호: <input name=\"no\" type=\"text\" value='%d' readonly><br>\n", board.getNo());
+    out.printf("제목*: <input name=\"title\" type=\"text\" value='%s'><br>\n", board.getTitle());
+    out.printf("내용*: <textarea name=\"content\" cols=\"50\" rows=\"10\">%s</textarea><br>\n", board.getContent());
+    out.printf("작성자: <span>%s</span><br>\n", board.getWriter().getName());
+    out.printf("조회수: <span>%d</span><br>\n", board.getViewCount());
+    out.printf("등록일: <span>%s</span><br>\n", board.getCreatedDate());
     out.println("별표(*) 항목은 필수 입력입니다.<br>");
-    out.println("<button>등록</button>");
+    out.println("<button>변경</button>");
+    out.println("<button id='delete-btn' type=\"button\">삭제</button>");
     out.println("<button id='cancel-btn' type=\"button\">취소</button>");
     out.println("</form>");
     out.println("</div>");
@@ -124,48 +131,15 @@ public class BoardAddServlet extends HttpServlet {
 
     out.println("</div>");
     out.println("<script>");
+    out.println("document.querySelector('#delete-btn').onclick = () => {");
+    out.println("  location.href = 'delete?no=' + document.querySelector('input[name=no]').value;");
+    out.println("}");
     out.println("document.querySelector('#cancel-btn').onclick = () => {");
     out.println("  location.href = 'list';");
     out.println("}");
     out.println("</script>");
     out.println("</body>");
     out.println("</html>");
-  }
 
-  @Override
-  protected void doPost(HttpServletRequest req, HttpServletResponse resp)
-      throws ServletException, IOException {
-
-    // 웹브라우저가 POST 요청으로 문자열을 보낼 때 어떤 문자집합으로 인코딩 했는지 알려줘야 한다.
-    // 그래야만 getParameter() 메서드에서 웹브라우저가 보낸 파라미터 값을 올바르게 꺼낼 수 있다.
-    // 즉 웹브라우저에서 웹서버에게 데이터를 보낼 때 UTF-8 로 인코딩 해서 보낸다.
-    // 그렇게 인코딩 해서 보낸 문자열을 자바에서 사용하는 UTF-16 으로 바꿔서 리턴하는 것이다.
-    // 주의!
-    // 반드시 getParaemeter() 호출하기 전에 설정해야 한다. 
-    // 단 한 번이라도 getParameter() 호출한 후 설정하게 되면 이 설정은 무시된다.
-    req.setCharacterEncoding("UTF-8");
-
-    Board board = new Board();
-    board.setTitle(req.getParameter("title"));
-    board.setContent(req.getParameter("content"));
-
-    Member loginUser = (Member) req.getSession().getAttribute("loginUser");
-    board.setWriter(loginUser);
-
-    boardService.add(board);
-
-    resp.sendRedirect("list");
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
