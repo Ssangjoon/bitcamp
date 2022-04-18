@@ -867,6 +867,7 @@ https://meet.google.com/cyz-mbfk-qaa
 
 - 미니 프로젝트(project-app3): 웹애플리케이션
   - 06.서블릿과 JSP를 함께 사용하여 MVC 모델2 방식으로 전환
+  - 07.JSP 액션 태그, JSTL, EL 활용하기
 - 파이널 프로젝트
   - 팀프로젝트 백엔드 및 프론트엔드 개발    
 
