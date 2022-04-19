@@ -33,6 +33,7 @@ public class DispatcherServlet extends HttpServlet {
       }
 
     } catch (Exception e) {
+      e.printStackTrace();
       if (request.getAttribute("exception") == null) {
         request.setAttribute("exception", e);
       }
