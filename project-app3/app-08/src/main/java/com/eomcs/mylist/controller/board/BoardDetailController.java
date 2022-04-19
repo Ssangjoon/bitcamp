@@ -8,12 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.eomcs.mylist.domain.Board;
-import com.eomcs.mylist.domain.Member;
 import com.eomcs.mylist.service.BoardService;
 
 @SuppressWarnings("serial")
-@WebServlet("/board/delete") 
-public class BoardDeleteController extends HttpServlet {
+@WebServlet("/board/detail") 
+public class BoardDetailController extends HttpServlet {
 
   BoardService boardService;
 
@@ -28,15 +27,10 @@ public class BoardDeleteController extends HttpServlet {
       throws ServletException, IOException {
 
     try {
-      Board board = new Board();
-      board.setNo(Integer.parseInt(request.getParameter("no")));
-
-      Member loginUser = (Member) request.getSession().getAttribute("loginUser");
-      board.setWriter(loginUser);
-
-      boardService.delete(board);
-
-      request.setAttribute("viewUrl", "redirect:list");
+      int no = Integer.parseInt(request.getParameter("no"));
+      Board board = boardService.get(no);
+      request.setAttribute("board", board);
+      request.setAttribute("viewUrl", "/jsp/board/detail.jsp");
 
     } catch (Exception e) {
       request.setAttribute("exception", e);

@@ -12,5 +12,6 @@
 ### 06 - 서블릿과 JSP를 함께 사용하여 MVC 모델2 방식으로 전환
 ### 07 - JSP 액션 태그, JSTL, EL 활용하기
 ### 08 - 프론트 컨트롤러 도입
-### 09 - Spring WebMVC 프레임워크 도입
-### 10 - Spring Boot로 전환
+### 09 - 페이지 컨트롤러를 일반 클래스(POJO)로 만들기
+###  - Spring WebMVC 프레임워크 도입
+###  - Spring Boot로 전환
