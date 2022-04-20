@@ -115,6 +115,11 @@ public class DispatcherServlet extends HttpServlet {
     // @RequestParam에 설정된 이름을 가지고 요청 파라미터 값을 꺼낸다.
     String value = request.getParameter(name);
 
+    // 해당 이름의 파라미터 값이 없으면 @RequestParam의 defaultValue 프로퍼티 값을 대신 사용한다.
+    if (value == null) {
+      value = anno.defaultValue();
+    }
+
     // String 값을 파라미터가 원하는 타입으로 형변환 한다.
     if (parameter.getType() == String.class) {
       return value;
