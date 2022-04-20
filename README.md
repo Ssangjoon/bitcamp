@@ -887,6 +887,7 @@ https://meet.google.com/cyz-mbfk-qaa
   - 11.애노테이션으로 요청을 처리할 메서드를 표시하기
   - 11.1.request handler를 추출하는 코드를 리팩토링
   - 12.페이지 컨트롤러에 request handler를 여러 개 두기
+  - 13.request handler의 파라미터 값 자동처리하기
 - 파이널 프로젝트
   - 팀프로젝트 백엔드 및 프론트엔드 개발    
 

@@ -1,10 +1,12 @@
 package com.eomcs.mylist.controller.board;
 
 import java.util.List;
+import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.eomcs.mylist.controller.Component;
 import com.eomcs.mylist.controller.RequestMapping;
+import com.eomcs.mylist.controller.RequestParam;
 import com.eomcs.mylist.domain.Board;
 import com.eomcs.mylist.domain.Member;
 import com.eomcs.mylist.service.BoardService;
@@ -60,10 +62,9 @@ public class BoardController {
   }
 
   @RequestMapping("detail")
-  public String detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    int no = Integer.parseInt(request.getParameter("no"));
+  public String detail(@RequestParam("no") int no, Map<String, Object> model) throws Exception {
     Board board = boardService.get(no);
-    request.setAttribute("board", board);
+    model.put("board", board);
     return "/jsp/board/detail.jsp";
   }
 
