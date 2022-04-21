@@ -19,4 +19,5 @@
 ### 12 - 페이지 컨트롤러에 request handler를 여러 개 두기
 ### 13 - request handler의 파라미터 값 자동처리하기
 ### 14 - Spring WebMVC 프레임워크 도입
+### 14.1 - DAO를 자동으로 생성하도록 Mybatis를 설정하기
 ###  - Spring Boot로 전환
