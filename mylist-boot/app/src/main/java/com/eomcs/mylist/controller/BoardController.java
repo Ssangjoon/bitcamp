@@ -44,7 +44,6 @@ public class BoardController {
     return new ResultMap().setStatus(SUCCESS);
   }
 
-
   @RequestMapping("/board/get")
   public Object get(int no) {
     Board board = boardService.get(no);

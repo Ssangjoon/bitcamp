@@ -19,7 +19,9 @@
     }
 
     var fd = new FormData(document.forms.namedItem("form1"));
-    
+    var obj = {title: 'aaa', content: 'bbb'};
+    console.log(JSON.stringify(obj));
+
     fetch("/board/add", {
     	  method: "POST",
     	  body: new URLSearchParams(fd)
