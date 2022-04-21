@@ -895,6 +895,7 @@ https://meet.google.com/cyz-mbfk-qaa
 
 - 미니 프로젝트(project-app3): 웹애플리케이션
   - 14.Spring WebMVC 프레임워크 도입
+  - 14.1.DAO를 자동으로 생성하도록 Mybatis를 설정하기
 - 파이널 프로젝트
   - 팀프로젝트 백엔드 및 프론트엔드 개발    
 
