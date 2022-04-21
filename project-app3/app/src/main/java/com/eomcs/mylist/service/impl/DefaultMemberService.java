@@ -1,38 +1,33 @@
 package com.eomcs.mylist.service.impl;
 
-import org.apache.ibatis.session.SqlSession;
-import org.apache.ibatis.session.SqlSessionFactory;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.eomcs.mylist.dao.MemberDao;
 import com.eomcs.mylist.domain.Member;
 import com.eomcs.mylist.service.MemberService;
 
+@Service
 public class DefaultMemberService implements MemberService {
 
-  SqlSessionFactory sqlSessionFactory;
+  MemberDao memberDao;
 
-  public DefaultMemberService(SqlSessionFactory sqlSessionFactory) {
-    this.sqlSessionFactory = sqlSessionFactory;
+  public DefaultMemberService(MemberDao memberDao) {
+    this.memberDao = memberDao;
   }
 
+  @Transactional
   @Override
   public int add(Member member) {
-    SqlSession session = sqlSessionFactory.openSession();
-    MemberDao memberDao = session.getMapper(MemberDao.class);
     return memberDao.insert(member);
   }
 
   @Override
   public Member get(String email, String password) {
-    SqlSession session = sqlSessionFactory.openSession();
-    MemberDao memberDao = session.getMapper(MemberDao.class);
     return memberDao.findByEmailAndPassword(email, password);
   }
 
   @Override
   public Member get(String email) {
-    SqlSession session = sqlSessionFactory.openSession();
-    MemberDao memberDao = session.getMapper(MemberDao.class);
     return memberDao.findByEmail(email);
   }
-
 }
