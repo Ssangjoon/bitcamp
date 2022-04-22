@@ -20,5 +20,5 @@
 ### 13 - request handler의 파라미터 값 자동처리하기
 ### 14 - Spring WebMVC 프레임워크 도입
 ### 14.1 - DAO를 자동으로 생성하도록 Mybatis를 설정하기
-### 15 - 웹 애플리케이션과 톰캣 서버를 함께 묶기
-###  - Spring Boot로 전환
+### 15 - tomcat embed 라이브러리를 사용하여 웹 애플리케이션과 톰캣 서버를 함께 묶기
+### 16 - Spring Boot로 전환
