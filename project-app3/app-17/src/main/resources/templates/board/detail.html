@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>MyList!</title>
+  <link th:href="@{/css/common.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+<div th:replace="header :: header">header.html</div>
+
+<div th:replace="sidebar :: sidebar">sidebar.html</div>
+
+<div id="content">
+
+<h1>게시글 상세</h1>
+<form action='update' method='post'>
+번호: <input name="no" type="text" th:value="${board.no}" readonly><br>
+제목*: <input name="title" type="text" th:value="${board.title}"><br>
+내용*: <textarea name="content" cols="50" rows="10" th:text="${board.content}"></textarea><br>
+작성자: <span th:text="${board.writer.name}"></span><br>
+조회수: <span th:text="${board.viewCount}"></span><br>
+등록일: <span th:text="${board.createdDate}"></span><br>
+별표(*) 항목은 필수 입력입니다.<br>
+<button>변경</button>
+<button id='delete-btn' type="button">삭제</button>
+<button id='cancel-btn' type="button">취소</button>
+</form>
+</div>
+
+<div th:replace="footer :: footer">footer.html</div>
+
+</div>
+
+<script>
+document.querySelector('#delete-btn').onclick = () => {
+  location.href = 'delete?no=' + document.querySelector('input[name=no]').value;
+}
+document.querySelector('#cancel-btn').onclick = () => {
+  location.href = 'list';
+}
+</script>
+
+</body>
+</html>

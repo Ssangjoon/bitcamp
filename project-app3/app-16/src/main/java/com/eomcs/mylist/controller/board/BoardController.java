@@ -58,14 +58,14 @@ public class BoardController {
     model.put("pageSize", pageSize);
     model.put("totalPageSize", totalPageSize);
 
-    return "board/list";
+    return "/jsp/board/list.jsp";
   }
 
   @RequestMapping("detail")
   public String detail(@RequestParam("no") int no, Map<String, Object> model) throws Exception {
     Board board = boardService.get(no);
     model.put("board", board);
-    return "board/detail";
+    return "/jsp/board/detail.jsp";
   }
 
   @RequestMapping("update")
@@ -104,7 +104,7 @@ public class BoardController {
   @RequestMapping("add")
   public String add(HttpServletRequest request, HttpServletResponse response) throws Exception {
     if (request.getMethod().equals("GET")) {
-      return "board/form";
+      return "/jsp/board/form.jsp";
     } 
 
     Board board = new Board();

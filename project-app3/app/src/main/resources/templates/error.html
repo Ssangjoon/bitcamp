@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>MyList!</title>
+  <link th:href="@{/css/common.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+<div th:replace="header :: header">header.html</div>
+
+<div th:replace="sidebar :: sidebar">sidebar.html</div>
+
+<div id="content">
+<h1>실행 오류!</h1>
+<p th:text="${'path: ' + path}"></p> 
+<p th:text="${'status: ' + status}"></p> 
+<p th:text="${'timestamp: ' + timestamp}"></p> 
+<p th:text="${'error: ' + error}"></p> 
+<p th:text="${'errors: ' + errors}"></p> 
+<p th:text="${'exception: ' + exception}"></p> 
+<p th:text="${'message: ' + message}"></p> 
+<pre th:text="${'trace: ' + trace}"></pre>
+</div>
+
+<div th:replace="footer :: footer">footer.html</div>
+
+</div>
+</body>
+</html>
