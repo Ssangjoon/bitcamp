@@ -16,14 +16,18 @@ import javax.servlet.annotation.WebServlet;
 @WebServlet("/hello") // 서블릿 컨테이너에게 이 클래스가 /hello 요청을 처리하는 서블릿임을 알려준다.
 public class HelloServlet implements Servlet{
 
+  ServletConfig config;
+
   @Override
   public void init(ServletConfig config) throws ServletException {
-
+    System.out.println("init() 호출!");
+    this.config = config;
   }
 
   @Override
   public ServletConfig getServletConfig() {
-    return null;
+    System.out.println("getServletConfig() 호출");
+    return this.config;
   }
 
   @Override
@@ -47,12 +51,13 @@ public class HelloServlet implements Servlet{
 
   @Override
   public String getServletInfo() {
-    return null;
+    System.out.println("getServletInfo() 호출");
+    return "HelloServlet";
   }
 
   @Override
   public void destroy() {
-
+    System.out.println("destroy() 호출");
   }
 
 }
