@@ -24,7 +24,7 @@ public class DefaultBoardService implements BoardService {
     try (SqlSession session = sqlSessionFactory.openSession();) {
       BoardDao boardDao = session.getMapper(BoardDao.class);
       int count = boardDao.insert(board);
-      session.commit(); //spring boot 에서 transaction에 해당
+      session.commit();
       return count;
 
     } catch (RuntimeException e) {
@@ -47,7 +47,7 @@ public class DefaultBoardService implements BoardService {
       if (board != null) {
         boardDao.increaseViewCount(no);
       }
-      session.commit(); 
+      session.commit();
       return board;
 
     } catch (RuntimeException e) {
