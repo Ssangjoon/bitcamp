@@ -26,7 +26,7 @@
 <table id="x-board-table" border="1">
 <thead>
   <tr>
-    <th>번호</th>
+    <th>번호1</th>
     <th>제목</th>
     <th>작성자</th>
     <th>조회수</th>
