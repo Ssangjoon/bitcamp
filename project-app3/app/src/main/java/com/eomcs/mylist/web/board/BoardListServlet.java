@@ -68,7 +68,7 @@ public class BoardListServlet extends HttpServlet {
     out.println("</thead>");
     out.println("<tbody>");
 
-    List<Board> boards = boardService.list();
+    List<Board> boards = boardService.list(pageSize, pageNo);
     for (Board board : boards) {
       out.println("  <tr>");
       out.printf("    <td>%d</td>\n", board.getNo());
