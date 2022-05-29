@@ -4,15 +4,14 @@ import java.io.IOException;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet("/app/*")
 @SuppressWarnings("serial")
-public class DispatcherServlet extends HttpServlet {
-  @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+public class DispatcherServlet {
+  @RequestMapping
+  protected void list(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     String controllerPath = request.getPathInfo(); // 예) /board/list
@@ -22,9 +21,10 @@ public class DispatcherServlet extends HttpServlet {
 
       // 애플리케이션 보관소에서 페이지 컨트롤러를 찾는다.
       ServletContext  애플리케이션보관소 = request.getServletContext();
-      Controller pageController = (Controller) 애플리케이션보관소.getAttribute(controllerPath);// 예) /board/list
+      RequestMappingHandler requestMappingHandler = (RequestMappingHandler) 애플리케이션보관소.getAttribute(controllerPath);// 예) /board/list
 
-      String viewUrl = pageController.execute(request, response);
+
+      String viewUrl = (String) requestMappingHandler.getMethod().invoke(requestMappingHandler, request, response);
 
       if (viewUrl.startsWith("redirect:")) { // 예) redirect:list
         response.sendRedirect(viewUrl.substring(9)); // 예) list
