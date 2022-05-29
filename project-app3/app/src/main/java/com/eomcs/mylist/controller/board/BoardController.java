@@ -5,16 +5,16 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import com.eomcs.mylist.controller.Component;
-import com.eomcs.mylist.controller.RequestMapping;
-import com.eomcs.mylist.controller.RequestParam;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import com.eomcs.mylist.domain.Board;
 import com.eomcs.mylist.domain.Member;
 import com.eomcs.mylist.service.BoardService;
 
-@Component
+@Controller
 @RequestMapping("/board/")
-public class BoardController{
+public class BoardController {
 
   BoardService boardService;
 
@@ -24,11 +24,10 @@ public class BoardController{
 
   @RequestMapping("list")
   public String list(
-      @RequestParam(value = "pageNo", defaultValue = "1") int pageNo,
-      @RequestParam(value = "pageSize", defaultValue = "5")  int pageSize,
-      Map<String, Object> model) throws Exception {
+      @RequestParam(value="pageNo", defaultValue="1") int pageNo, 
+      @RequestParam(value="pageSize", defaultValue="5") int pageSize, 
+      Map<String,Object> model) throws Exception {
 
-    // 1) 입력 데이터 가공 및 검증
     int totalPageSize = 0;
 
     try { // pageSize 파라미터 값이 있다면 기본 값을 변경한다.
@@ -63,10 +62,9 @@ public class BoardController{
   }
 
   @RequestMapping("detail")
-  public String detail(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    int no = Integer.parseInt(request.getParameter("no"));
+  public String detail(@RequestParam("no") int no, Map<String, Object> model) throws Exception {
     Board board = boardService.get(no);
-    request.setAttribute("board", board);
+    model.put("board", board);
     return "/jsp/board/detail.jsp";
   }
 
@@ -76,7 +74,6 @@ public class BoardController{
       @RequestParam("title") String title, 
       @RequestParam("content") String content,
       HttpSession session) throws Exception {
-
 
     Board board = new Board();
     board.setNo(no);
