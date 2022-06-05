@@ -7,8 +7,8 @@ public class Exam0310 {
     void play();
   }
 
-  static void testPlayer(Player p) {
-    p.play();
+  static void testPlayer(Player player) {
+    player.play();
   }
 
   public static void main(String[] args) {
@@ -24,5 +24,3 @@ public class Exam0310 {
 
   }
 }
-
-
